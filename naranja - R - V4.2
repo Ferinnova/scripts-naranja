@@ -1,0 +1,741 @@
+// @name         Cambiar estado a "Registrado-proceso-pausa" (Aranda) - REQUERIMIENTOS (Strict Logic v4.2)
+// @namespace    https://example.local/
+// @version      3.9
+// @description  Espera 4s. Valida Requerimientos. Si actúa regla de Aranda, igual intenta cambiar. Si ya está en proceso y en Asignador, se pausa.
+// @match        https://aranda.positiva.gov.co/ASDKV8/*
+// @run-at       document-idle
+// @grant        none
+// ==/UserScript==
+
+(function(){
+  'use strict';
+
+  var sleep = function(ms){ return new Promise(function(r){ setTimeout(r, ms); }); };
+
+  function log(){
+    var args = Array.prototype.slice.call(arguments);
+    args.unshift('[cambiar-estado: auto-timer]');
+    console.log.apply(console, args);
+  }
+
+  var AUTO_START_DELAY_MS = 20000;
+  var RETRY_MAX = 3;
+  var RETRY_INTERVAL_MS = 20000;
+  var AUTO_STOP_ON_SUCCESS = true;
+
+  if (window.__cambiarEstadoAutoTimerInstalled) {
+    log('Script ya instalado');
+    return;
+  }
+  window.__cambiarEstadoAutoTimerInstalled = true;
+
+  var monitorPanel = null;
+  var statusElement = null;
+  var logElement = null;
+  var progressBar = null;
+  var retryCounter = null;
+  var retries = 0;
+  var running = false;
+  var isPaused = false;
+  var userPaused = false;
+  var isRequerimientoMinimized = true; // Inicia minimizado por defecto
+
+  function resaltarElemento(elemento, color) {
+      if (elemento) {
+          elemento.style.backgroundColor = color;
+          elemento.style.color = "black";
+          elemento.style.border = "3px solid red";
+          elemento.style.fontWeight = "bold";
+      }
+  }
+
+  function verificarSiEsRequerimientoEstricto() {
+      log("Verificando TIPO de caso...");
+      var headers = document.querySelectorAll('.enviroment__title, .module-name, h2, h1');
+
+      for (var i = 0; i < headers.length; i++) {
+          var texto = (headers[i].textContent || '').trim().toLowerCase();
+
+          if (texto === 'incidente' || texto.startsWith('incidente')) {
+              log("⛔ Detectado 'INCIDENTE'. Deteniendo ejecución.");
+              resaltarElemento(headers[i], "orange");
+              return false;
+          }
+
+          if (texto.includes('requerimiento') || texto.includes('servicio')) {
+              log("✅ Confirmado: Es un Requerimiento.");
+              resaltarElemento(headers[i], "yellow");
+              return true;
+          }
+      }
+
+      var rutas = document.querySelectorAll('.breadcrumb, .navigation-path');
+      for (var j = 0; j < rutas.length; j++) {
+          var rutaTexto = (rutas[j].textContent || '').toLowerCase();
+          if (rutaTexto.includes('requerimiento')) {
+              log("✅ Confirmado por ruta: Es un Requerimiento.");
+              resaltarElemento(rutas[j], "yellow");
+              return true;
+          }
+      }
+
+      log("⛔ No se encontró la palabra 'Requerimiento' explícita. Deteniendo por seguridad.");
+      return false;
+  }
+
+  // ==========================================
+  // UI MODIFICADA (Oculta con Flecha Derecha)
+  // ==========================================
+  function createMonitorUI(){
+    monitorPanel = document.createElement('div');
+    monitorPanel.id = 'aranda-monitor-wrapper-requerimiento';
+
+    monitorPanel.innerHTML = `
+      <!-- FLECHA MINIMIZADA PEGADA A LA DERECHA -->
+      <div id="req-monitor-arrow" style="position: fixed; bottom: 500px; right: 0; z-index: 999999;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  color: white; padding: 12px 8px 12px 14px; border-radius: 8px 0 0 8px;
+                  box-shadow: -2px 4px 10px rgba(0,0,0,0.3); cursor: pointer;
+                  display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+        <span style="font-size: 16px; font-weight: bold; line-height: 1;">◀</span>
+      </div>
+
+      <!-- PANEL COMPLETO -->
+      <div id="aranda-monitor-panel-requerimiento" style="position: fixed; bottom: 500px; right: 20px; width: 260px; max-height: 550px;
+                  background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); border-radius: 12px;
+                  box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 999999; font-family: 'Segoe UI', Tahoma, sans-serif;
+                  color: white; overflow: hidden; display: none;">
+        <div style="padding:20px;background:rgba(0,0,0,0.2);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+            <h3 style="margin:0;font-size:16px;font-weight:600;">Monitor Requerimientos</h3>
+            <button id="req-toggle-monitor" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:5px 10px;border-radius:5px;cursor:pointer;font-size:12px;">▶ Ocultar</button>
+          </div>
+          <div id="req-status-badge" style="display:inline-block;padding:6px 12px;background:rgba(255,255,255,0.2);border-radius:20px;font-size:12px;font-weight:500;">Iniciando...</div>
+        </div>
+        <div id="req-monitor-content" style="padding:20px;background:white;color:#333;">
+          <div style="margin-bottom:15px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+              <span style="font-size:13px;font-weight:600;">Progreso</span>
+              <span id="req-retry-counter" style="font-size:12px;color:#666;">Intento 0 / ` + RETRY_MAX + `</span>
+            </div>
+            <div style="background:#e0e0e0;height:8px;border-radius:10px;overflow:hidden;">
+              <div id="req-progress-bar" style="width:0%;height:100%;background: linear-gradient(90deg,#667eea,#764ba2);transition:width 0.5s ease;"></div>
+            </div>
+          </div>
+          <div style="margin-bottom:15px;padding:12px;background:#f5f5f5;border-radius:8px;border-left:4px solid #667eea;">
+            <div style="font-size:12px;color:#666;margin-bottom:5px;">Estado Actual</div>
+            <div id="req-current-status" style="font-size:14px;font-weight:600;color:#333;">Esperando inicio...</div>
+          </div>
+          <div style="margin-bottom:15px;">
+            <div style="font-size:12px;font-weight:600;margin-bottom:8px;color:#666;">Registro de Actividad</div>
+            <div id="req-activity-log" style="max-height:130px;overflow-y:auto;font-size:11px;line-height:1.6;background:#fafafa;padding:10px;border-radius:6px;font-family: Courier New,monospace;">
+              <div style="color:#999;">Esperando inicio...</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button id="req-manual-start" style="flex:1;padding:10px;background: linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px;">Iniciar Ahora</button>
+            <button id="req-pause-toggle" style="flex:1;padding:10px;background:#FF9800;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px;">⏸ Pausar</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(monitorPanel);
+
+    statusElement = document.getElementById('req-current-status');
+    logElement = document.getElementById('req-activity-log');
+    progressBar = document.getElementById('req-progress-bar');
+    retryCounter = document.getElementById('req-retry-counter');
+
+    var arrowBtn = document.getElementById('req-monitor-arrow');
+    var toggleBtn = document.getElementById('req-toggle-monitor');
+    var container = document.getElementById('aranda-monitor-panel-requerimiento');
+
+    function updateToggleState() {
+      if (isRequerimientoMinimized) {
+        container.style.display = 'none';
+        arrowBtn.style.display = 'flex';
+      } else {
+        container.style.display = 'block';
+        arrowBtn.style.display = 'none';
+      }
+    }
+
+    updateToggleState();
+
+    arrowBtn.addEventListener('click', function() {
+      isRequerimientoMinimized = false;
+      updateToggleState();
+    });
+
+    toggleBtn.addEventListener('click', function() {
+      isRequerimientoMinimized = true;
+      updateToggleState();
+    });
+
+    document.getElementById('req-manual-start').addEventListener('click', function() {
+      addLog('Inicio manual solicitado', 'info');
+      isPaused = false;
+      userPaused = false;
+      updatePauseButton();
+      attemptChangeWithRetries();
+    });
+
+    document.getElementById('req-pause-toggle').addEventListener('click', function() {
+      userPaused = !userPaused;
+      if (userPaused) {
+        addLog('⏸ Ejecución pausada por el usuario', 'warning');
+        updateStatus('Pausado por el usuario', 'warning');
+      } else {
+        addLog('▶ Ejecución reanudada por el usuario', 'success');
+        updateStatus('Activo', 'info');
+      }
+      updatePauseButton();
+    });
+  }
+
+  function updatePauseButton(){
+    var pauseBtn = document.getElementById('req-pause-toggle');
+    if (pauseBtn) {
+      if (userPaused) {
+        pauseBtn.textContent = '▶ Reanudar';
+        pauseBtn.style.background = '#4CAF50';
+      } else {
+        pauseBtn.textContent = '⏸ Pausar';
+        pauseBtn.style.background = '#FF9800';
+      }
+    }
+  }
+
+  function updateStatus(text, type){
+    type = type || 'info';
+    if (!statusElement) return;
+    statusElement.textContent = text;
+    var badge = document.getElementById('req-status-badge');
+    var icons = { info: '◉', success: '✔ ', error: '✗ ', warning: '⚠ ', searching: '◎' };
+    badge.textContent = (icons[type] || '') + text;
+  }
+
+  function addLog(message, type){
+    type = type || 'info';
+    if (!logElement) return;
+    var colors = { info: '#2196F3', success: '#4CAF50', error: '#F44336', warning: '#FF9800', searching: '#9C27B0' };
+    var timestamp = new Date().toLocaleTimeString('es-CO', {hour: '2-digit', minute: '2-digit', second: '2-digit'});
+    var logEntry = document.createElement('div');
+    logEntry.style.cssText = 'margin-bottom:6px;padding:6px 8px;background: white;border-radius:4px;border-left:3px solid ' + (colors[type] || colors.info) + ';';
+    logEntry.innerHTML = '<span style="color:#999;">[' + timestamp + ']</span> <span style="color:' + (colors[type] || colors.info) + ';">' + message + '</span>';
+    logElement.insertBefore(logEntry, logElement.firstChild);
+    while (logElement.children.length > 50) {
+      logElement.removeChild(logElement.lastChild);
+    }
+    log(message);
+  }
+
+  function updateProgress(percent, retry){
+    retry = retry || 0;
+    if (progressBar) progressBar.style.width = percent + '%';
+    if (retryCounter) retryCounter.textContent = 'Intento ' + retry + ' / ' + RETRY_MAX;
+  }
+
+  function showAlert(title, message, type){
+    type = type || 'error';
+    var alertBox = document.createElement('div');
+    alertBox.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:30px;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.3);z-index:9999999;max-width:400px;text-align:center;';
+    var icon = type === 'error' ? '✗' : type === 'success' ? '✔' : '⚠';
+    var color = type === 'error' ? '#F44336' : type === 'success' ? '#4CAF50' : '#FF9800';
+    alertBox.innerHTML =
+      '<div style="font-size:48px;margin-bottom:15px;color:' + color + ';">' + icon + '</div>' +
+      '<h3 style="margin:0 0 10px 0;color:' + color + ';font-size:20px;">' + title + '</h3>' +
+      '<p style="margin:0 0 20px 0;color:#666;font-size:14px;line-height:1.6;">' + message + '</p>' +
+      '<button style="padding:10px 30px;background:' + color + ';color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:14px;">Entendido</button>';
+    document.body.appendChild(alertBox);
+    alertBox.querySelector('button').addEventListener('click', function() { alertBox.remove(); });
+    setTimeout(function(){ alertBox.remove(); }, 10000);
+  }
+
+  function detectarGrupoAsignador() {
+      // Retorna true si el grupo actual es "1. Asignador Mesa de Ayuda"
+      var cmb = document.getElementById('cmbSpecialistGroup');
+      if (cmb && cmb.options && cmb.selectedIndex >= 0) {
+          if (cmb.options[cmb.selectedIndex].text.indexOf('1. Asignador Mesa de Ayuda') !== -1) {
+              return true;
+          }
+      }
+      var spans = document.querySelectorAll('span.k-input.ng-scope, span.k-input');
+      for (var s = 0; s < spans.length; s++) {
+          if (spans[s].textContent.indexOf('1. Asignador Mesa de Ayuda') !== -1) {
+              return true;
+          }
+      }
+      return false;
+  }
+
+  function detectRegistrado(){
+    var i, text;
+    var kInputs = document.getElementsByClassName('k-input');
+    for (i = 0; i < kInputs.length; i++) {
+      text = (kInputs[i].textContent || '').toLowerCase().trim();
+      if (text === 'registrado') {
+        addLog('Estado "Registrado" detectado', 'success');
+        return true;
+      }
+    }
+    var statesColor = document.getElementsByClassName('states-color');
+    for (i = 0; i < statesColor.length; i++) {
+      text = (statesColor[i].textContent || '').toLowerCase().trim();
+      if (text.indexOf('registrado') !== -1) {
+        addLog('Estado "Registrado" detectado', 'success');
+        return true;
+      }
+    }
+    var allSpans = document.getElementsByTagName('span');
+    for (i = 0; i < allSpans.length; i++) {
+      text = (allSpans[i].textContent || '').toLowerCase().trim();
+      if (text === 'registrado') {
+        addLog('Estado "Registrado" detectado', 'success');
+        return true;
+      }
+    }
+    addLog('No se detectó "Registrado"', 'warning');
+    return false;
+  }
+
+  function isAlreadyEnProceso(){
+    var i, text;
+    var kInputs = document.getElementsByClassName('k-input');
+    for (i = 0; i < kInputs.length; i++) {
+      text = (kInputs[i].textContent || '').toLowerCase().trim();
+      if (text === 'en proceso') {
+        return true;
+      }
+    }
+    var statesColor = document.getElementsByClassName('states-color');
+    for (i = 0; i < statesColor.length; i++) {
+      text = (statesColor[i].textContent || '').toLowerCase().trim();
+      if (text === 'en proceso') {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function findSelectCandidates(){
+    var el = document.querySelector('select.cmbEstadoClass');
+    if (el) return el;
+    el = document.querySelector('select[name*="Estado"]');
+    if (el) return el;
+    el = document.querySelector('select[id*="Estado"]');
+    if (el) return el;
+    el = document.querySelector('select');
+    if (el) return el;
+    return null;
+  }
+
+  function tryKendoChange(selectEl){
+    try {
+      var $ = window.jQuery || window.$;
+      if (!$) {
+        addLog('jQuery no disponible', 'warning');
+        return false;
+      }
+      var $sel = $(selectEl);
+      var widget = $sel.data('kendoDropDownList') || $sel.data('kendoComboBox') || $sel.data('kendoWidget') || null;
+      if (!widget) {
+        addLog('Widget Kendo no encontrado', 'warning');
+        return false;
+      }
+      var ds = widget.dataSource && widget.dataSource.data && widget.dataSource.data();
+      if (!ds || !ds.length) return false;
+      var match = null;
+      for (var i = 0; i < ds.length; i++) {
+        var itemText = ((ds[i].text || ds[i].Text || ds[i].Nombre || '') + '').toLowerCase().trim();
+        if (itemText === 'en proceso') {
+          match = ds[i];
+          break;
+        }
+      }
+      if (!match) {
+        addLog('No se encontró opción exacta "En proceso"', 'warning');
+        return false;
+      }
+      var value = match.value || match.Id || match.id || match.Value || match.IdEstado || match.idEstado;
+      widget.value(value);
+      try {
+        if (widget.trigger) widget.trigger('change');
+        if ($sel.trigger) $sel.trigger('change');
+      } catch(e){}
+      addLog('Cambio realizado vía Kendo', 'success');
+      return true;
+    } catch(e){
+      addLog('Error en Kendo: ' + e.message, 'error');
+      return false;
+    }
+  }
+
+  async function tryManualOpenAndSelect(displayEl){
+    try {
+      if (!displayEl) return false;
+      addLog('Abriendo dropdown...', 'searching');
+      displayEl.click();
+      await sleep(3000);
+      var i;
+      var kItems = document.getElementsByClassName('k-item');
+      for (i = 0; i < kItems.length; i++) {
+        var itemText = (kItems[i].innerText || '').toLowerCase().trim();
+        if (itemText === 'en proceso') {
+          kItems[i].click();
+          addLog('Item seleccionado (Exacto)', 'success');
+          return true;
+        }
+      }
+      var allLi = document.getElementsByTagName('li');
+      for (i = 0; i < allLi.length; i++) {
+        var liText = (allLi[i].innerText || '').toLowerCase().trim();
+        if (liText === 'en proceso') {
+          allLi[i].click();
+          addLog('Opción alternativa seleccionada (Exacto)', 'success');
+          return true;
+        }
+      }
+      addLog('No se encontró "En proceso" exacto', 'warning');
+      return false;
+    } catch(e){
+      addLog('Error al abrir selector: ' + e.message, 'error');
+      return false;
+    }
+  }
+
+  function findDisplayElement(){
+    var i, text;
+    var kInputs = document.getElementsByClassName('k-input');
+    for (i = 0; i < kInputs.length; i++) {
+      text = (kInputs[i].textContent || '').toLowerCase();
+      if (text.indexOf('registrado') !== -1) {
+        return kInputs[i];
+      }
+    }
+    var statesColor = document.getElementsByClassName('states-color');
+    for (i = 0; i < statesColor.length; i++) {
+      text = (statesColor[i].textContent || '').toLowerCase();
+      if (text.indexOf('registrado') !== -1) {
+        return statesColor[i];
+      }
+    }
+    var kDropdownWrap = document.getElementsByClassName('k-dropdown-wrap');
+    for (i = 0; i < kDropdownWrap.length; i++) {
+      text = (kDropdownWrap[i].textContent || '').toLowerCase();
+      if (text.indexOf('registrado') !== -1) {
+        return kDropdownWrap[i];
+      }
+    }
+    return null;
+  }
+
+  function findAndClickGuardar(){
+    var i;
+    var buttons = document.getElementsByTagName('button');
+    for (i = 0; i < buttons.length; i++) {
+      if ((buttons[i].textContent || '').trim().toLowerCase() === 'guardar') {
+        buttons[i].click();
+        addLog('Click en Guardar', 'success');
+        return true;
+      }
+    }
+    var allElements = document.querySelectorAll('a, div, span');
+    for (i = 0; i < allElements.length; i++) {
+      if ((allElements[i].textContent || '').trim().toLowerCase() === 'guardar') {
+        allElements[i].click();
+        addLog('Click en Guardar', 'success');
+        return true;
+      }
+    }
+    addLog('No se encontró botón Guardar', 'warning');
+    return false;
+  }
+
+  function findAndClickSalir(){
+    var exitDiv = document.querySelector('div[ng-click="exit()"]');
+    if (exitDiv) {
+        exitDiv.click();
+        addLog('Click en Salir (Botón Superior)', 'success');
+        return true;
+    }
+
+    var i;
+    var buttons = document.getElementsByTagName('button');
+    for (i = 0; i < buttons.length; i++) {
+      if ((buttons[i].textContent || '').trim().toLowerCase() === 'salir') {
+        buttons[i].click();
+        addLog('Click en Salir', 'success');
+        return true;
+      }
+    }
+    var allElements = document.querySelectorAll('a, div, span');
+    for (i = 0; i < allElements.length; i++) {
+      if ((allElements[i].textContent || '').trim().toLowerCase() === 'salir') {
+        allElements[i].click();
+        addLog('Click en Salir', 'success');
+        return true;
+      }
+    }
+    addLog('No se encontró botón Salir', 'warning');
+    return false;
+  }
+
+  // ==========================================
+  // FLUJO PRINCIPAL ORGANIZADO
+  // ==========================================
+  async function changeEstadoFlow(){
+    try {
+      if (isPaused || userPaused) {
+        addLog('Proceso pausado', 'warning');
+        return false;
+      }
+
+      // OPCIÓN 2 MODIFICADA: Si la regla de Aranda actuó (el grupo cambió),
+      // lo registramos y seguimos para intentar pasarlo a "En Proceso"
+      if (!detectarGrupoAsignador()) {
+          addLog('⚠️ Regla de Aranda detectada (el grupo cambió). Procediendo a intentar cambiar a proceso, guardar y salir...', 'warning');
+      }
+
+      // Validar si el estado es Registrado o ya está en proceso
+      if (!detectRegistrado()) {
+        if (isAlreadyEnProceso()) {
+          // OPCIÓN 3 MODIFICADA: Si ya está en proceso, validamos el grupo
+          if (detectarGrupoAsignador()) {
+            addLog('⚠️ Ya está en proceso pero el grupo es "Asignador Mesa de Ayuda". Pausando...', 'warning');
+            updateStatus('Pausado: Ya en proceso y en Asignador', 'warning');
+            isPaused = true;
+            return false; // Al retornar false y estar isPaused = true, se detiene
+          } else {
+            // Si está en proceso pero el grupo ya es otro (la regla actuó antes y se guardó), entonces salimos normal.
+            addLog('Estado ya es "En proceso" (en otro grupo).', 'success');
+            updateStatus('Ya está en proceso', 'success');
+            updateProgress(100);
+            return 'ALREADY_PROCESO';
+          }
+        }
+        updateStatus('No se detectó "Registrado". Proceso pausado.', 'warning');
+        isPaused = true;
+        return false;
+      }
+
+      addLog('Iniciando flujo de cambio a Proceso...', 'info');
+      updateStatus('Cambiando estado...', 'searching');
+      updateProgress(10);
+
+      // Proceder al cambio de estado a En Proceso
+      updateProgress(20);
+      var sel = findSelectCandidates();
+      if (sel) {
+        addLog('Select encontrado', 'info');
+        updateProgress(30);
+      }
+
+      var changedSuccessfully = false;
+
+      // Intento 1: Kendo Select
+      if (sel && tryKendoChange(sel)) {
+          changedSuccessfully = true;
+          updateProgress(60);
+      }
+      // Intento 2: Escaneo Kendo global
+      else {
+          updateProgress(40);
+          if (window.jQuery) {
+            addLog('Escaneando widgets Kendo...', 'searching');
+            try {
+              var $ = window.jQuery;
+              var foundWidget = null;
+              $('*').each(function(idx, el){
+                try {
+                  var w = $(el).data && ($(el).data('kendoDropDownList') || $(el).data('kendoComboBox') || $(el).data('kendoWidget'));
+                  if (w && !foundWidget) {
+                    foundWidget = { el: el, widget: w };
+                    return false;
+                  }
+                } catch(e){}
+              });
+              if (foundWidget) {
+                addLog('Widget Kendo encontrado', 'info');
+                updateProgress(50);
+                var ds = foundWidget.widget.dataSource && foundWidget.widget.dataSource.data && foundWidget.widget.dataSource.data();
+                if (ds && ds.length) {
+                  var match = null;
+                  for (var k = 0; k < ds.length; k++) {
+                    var txt = ((ds[k].text || ds[k].Text || '') + '').toLowerCase().trim();
+                    if (txt === 'en proceso') {
+                      match = ds[k];
+                      break;
+                    }
+                  }
+                  if (match) {
+                    foundWidget.widget.value(match.value || match.Id || match.id || match.Value || match.IdEstado || match.idEstado);
+                    try { $(foundWidget.el).trigger('change'); } catch(e){}
+                    changedSuccessfully = true;
+                    updateProgress(70);
+                  }
+                }
+              }
+            } catch(e){
+              addLog('Error escaneando widgets: ' + e.message, 'error');
+            }
+          }
+
+          // Intento 3: Display Element Manual (Click y Seleccionar Lista)
+          if (!changedSuccessfully) {
+              updateProgress(55);
+              var display = findDisplayElement();
+              if (display) {
+                addLog('Display element detectado', 'info');
+                updateProgress(60);
+                changedSuccessfully = await tryManualOpenAndSelect(display);
+                if (changedSuccessfully) updateProgress(75);
+              }
+          }
+      }
+
+      // Ejecutar Guardar y Salir
+      if (changedSuccessfully) {
+          updateStatus('Guardando cambios...', 'info');
+          await sleep(3000);
+          findAndClickGuardar();
+          updateProgress(85);
+
+          await sleep(10000);
+          findAndClickSalir();
+          updateProgress(100);
+          updateStatus('Completado exitosamente', 'success');
+          return true;
+      }
+
+      addLog('No se pudo cambiar el estado', 'error');
+      updateStatus('No se encontró forma de cambiar', 'error');
+      updateProgress(0);
+      return false;
+
+    } catch(e){
+      addLog('Error crítico: ' + e.message, 'error');
+      updateStatus('Error en ejecución', 'error');
+      updateProgress(0);
+      return false;
+    }
+  }
+
+  async function attemptChangeWithRetries(){
+    if (running) {
+      addLog('Ya hay una ejecución en curso', 'warning');
+      return;
+    }
+    if (userPaused) {
+      addLog('Ejecución pausada por el usuario', 'warning');
+      return;
+    }
+    running = true;
+    try {
+      updateProgress(0, 0);
+
+      var ok = await changeEstadoFlow();
+
+      // VALIDACIÓN: Ya estaba en proceso y no nos interesa (en otro grupo)
+      if (ok === 'ALREADY_PROCESO') {
+          addLog('Saliendo porque ya estaba en proceso y asignado a otro grupo.', 'info');
+          await sleep(2000);
+          findAndClickSalir();
+          return true;
+      }
+
+      if (ok === true) {
+        addLog('Cambio exitoso', 'success');
+        showAlert('Éxito', 'El estado se cambió correctamente a "En proceso"', 'success');
+      } else if (isPaused) {
+        addLog('Ejecución pausada. Presiona "Iniciar Ahora" para continuar.', 'warning');
+        running = false;
+        return false;
+      } else {
+        addLog('Primer intento falló', 'warning');
+      }
+
+      // Reintentos en caso de fallo
+      while (ok !== true && retries < RETRY_MAX && !isPaused && !userPaused) {
+        retries++;
+        updateProgress(0, retries);
+        addLog('Reintento ' + retries + '/' + RETRY_MAX + ' en ' + (RETRY_INTERVAL_MS/1000) + 's', 'info');
+        updateStatus('Esperando reintento ' + retries + '...', 'warning');
+        await sleep(RETRY_INTERVAL_MS);
+        if (isPaused || userPaused) {
+          addLog('Ejecución pausada durante reintento', 'warning');
+          break;
+        }
+
+        var ok2 = await changeEstadoFlow();
+
+        if (ok2 === 'ALREADY_PROCESO') {
+            addLog('⚠️ Condición de salida detectada. Saliendo automáticamente...', 'warning');
+            updateStatus('Saliendo...', 'warning');
+            await sleep(2000);
+            findAndClickSalir();
+            return true;
+        }
+
+        if (ok2 === true) {
+          addLog('Reintento ' + retries + ' exitoso', 'success');
+          showAlert('Éxito', 'El cambio se completó en el intento ' + retries, 'success');
+          ok = true;
+          break;
+        } else {
+          addLog('Reintento ' + retries + ' falló', 'error');
+        }
+      }
+
+      if (ok !== true && !isPaused && !userPaused) {
+        showAlert('No se pudo cambiar', 'Después de ' + RETRY_MAX + ' intentos, no fue posible cambiar el estado o encontrar "Registrado". Saliendo del caso...', 'error');
+        updateStatus('Falló tras todos los intentos. Saliendo...', 'error');
+        addLog('Agotados los ' + RETRY_MAX + ' intentos sin éxito. Ejecutando Salida...', 'warning');
+
+        await sleep(2000);
+        findAndClickSalir();
+      }
+
+      return ok;
+    } finally {
+      running = false;
+    }
+  }
+
+  window.cambiarEstado_iniciarAhora = async function(){
+    addLog('Llamada manual desde consola', 'info');
+    isPaused = false;
+    userPaused = false;
+    updatePauseButton();
+    return attemptChangeWithRetries();
+  };
+
+  setTimeout(function() {
+    createMonitorUI();
+    addLog('Monitor visual iniciado', 'success');
+
+    addLog('⏳ Esperando 4s para validación de tipo...', 'info');
+    setTimeout(function() {
+        var esRequerimiento = verificarSiEsRequerimientoEstricto();
+        if (!esRequerimiento) {
+            addLog('🛑 DETENIDO: No es un Requerimiento', 'error');
+            updateStatus('Detenido: No es Requerimiento', 'error');
+            return;
+        }
+
+        addLog('✅ Es Requerimiento. Iniciando timer de ' + (AUTO_START_DELAY_MS/1000) + 's', 'info');
+        updateStatus('Esperando ' + (AUTO_START_DELAY_MS/1000) + 's...', 'info');
+
+        setTimeout(function() {
+          attemptChangeWithRetries().then(function(ok) {
+            if (ok !== true && ok !== 'ALREADY_PROCESO' && !isPaused) {
+              addLog('Proceso finalizado sin éxito', 'warning');
+            }
+          }).catch(function(e){ addLog('Error: ' + e.message, 'error'); });
+        }, AUTO_START_DELAY_MS);
+
+    }, 4000);
+  }, 1000);
+
+})();
