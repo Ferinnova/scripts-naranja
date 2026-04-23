@@ -1,0 +1,773 @@
+// @name         Workflow Aranda: Incidente → Check Registrado (Delay 6s) → Datos Agresivo (2 Intentos) → ID → Guardar v19
+// @namespace    https://example.local/
+// @version      16.5
+// @description  Combina validación "No cambia", llena textarea, __text3247 y __text3235 con 1. Inicia oculto con flecha.
+// @match        https://aranda.positiva.gov.co/ASDKV8/*
+// @run-at       document-idle
+// @grant        none
+// ==/UserScript==
+
+(function(){
+  'use strict';
+
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  // Variables globales de control
+  window.__WorkflowState = {
+    incidenteDetectado: false,
+    datosLlenados: false,
+    estadoCambiado: false,
+    procesoIniciado: false,
+    pausado: false
+  };
+
+  let monitorPanel, statusElement, logElement, progressBar;
+  let isWorkflowMinimized = true; // Inicia minimizado por defecto
+
+  /* ========================================================================== */
+  /* INTERFAZ VISUAL MODIFICADA (Oculta con Flecha)                             */
+  /* ========================================================================== */
+
+  function createMonitorUI(){
+    monitorPanel = document.createElement('div');
+    monitorPanel.id = 'aranda-workflow-wrapper-incidente';
+
+    monitorPanel.innerHTML = `
+      <!-- FLECHA MINIMIZADA PEGADA A LA DERECHA -->
+      <div id="workflow-monitor-arrow" style="position: fixed; bottom: 350px; right: 0; z-index: 999999;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  color: white; padding: 12px 8px 12px 14px; border-radius: 8px 0 0 8px;
+                  box-shadow: -2px 4px 10px rgba(0,0,0,0.3); cursor: pointer;
+                  display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+        <span style="font-size: 16px; font-weight: bold; line-height: 1;">◀</span>
+      </div>
+
+      <!-- PANEL COMPLETO -->
+      <div id="aranda-workflow-panel-incidente" style="position: fixed; bottom: 350px; right: 20px; width: 280px;
+                  background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); border-radius: 12px;
+                  box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 999999; font-family: 'Segoe UI', Tahoma, sans-serif;
+                  color: white; display: none; overflow: hidden;">
+        <div style="padding: 20px;background: rgba(0,0,0,0.2);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+            <h3 style="margin:0;font-size:16px;font-weight:600;">🔄 Workflow Aranda</h3>
+            <button id="toggle-workflow-monitor" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:5px 10px;border-radius:5px;cursor:pointer;font-size:12px;">▶ Ocultar</button>
+          </div>
+          <div id="workflow-status-badge" style="padding:8px;background:rgba(255,255,255,0.2);border-radius:8px;font-size:13px;font-weight:500;text-align:center;">Iniciando workflow...</div>
+        </div>
+        <div id="workflow-monitor-content" style="padding:20px;background:white;color:#333;">
+          <div style="margin-bottom:20px;">
+            <div style="font-size:12px;font-weight:600;margin-bottom:10px;color:#666;">Pasos del Proceso</div>
+            <div id="workflow-step-1" style="padding:10px;margin-bottom:8px;background:#f5f5f5;border-radius:6px;border-left:4px solid #ccc;">
+              <div style="font-weight:600;font-size:13px;">1️⃣ Validaciones Iniciales</div>
+              <div style="font-size: 11px;color:#666;margin-top:4px;">Esperando... </div>
+            </div>
+            <div id="workflow-step-2" style="padding:10px;margin-bottom:8px;background:#f5f5f5;border-radius:6px;border-left:4px solid #ccc;">
+              <div style="font-weight: 600;font-size:13px;">2️⃣ Llenar Datos (Agresivo)</div>
+              <div style="font-size:11px;color:#666;margin-top: 4px;">Pendiente</div>
+            </div>
+            <div id="workflow-step-3" style="padding:10px;background:#f5f5f5;border-radius:6px;border-left:4px solid #ccc;">
+              <div style="font-weight:600;font-size:13px;">3️⃣ Cambiar a Identificación</div>
+              <div style="font-size:11px;color:#666;margin-top:4px;">Pendiente</div>
+            </div>
+          </div>
+          <div style="margin-bottom:15px;">
+            <div style="background:#e0e0e0;height:8px;border-radius:10px;overflow:hidden;">
+              <div id="workflow-progress-bar" style="width:0%;height:100%;background: linear-gradient(90deg,#667eea,#764ba2);transition:width 0.5s ease;"></div>
+            </div>
+          </div>
+          <div style="margin-bottom:15px;">
+            <div style="font-size:12px;font-weight:600;margin-bottom: 8px;color:#666;">Registro de Actividad</div>
+            <div id="workflow-activity-log" style="max-height:130px;overflow-y:auto;font-size:11px;line-height:1.6;background:#fafafa;padding:10px;border-radius:6px;font-family: Courier New,monospace;">
+              <div style="color:#999;">Esperando inicio...</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button id="workflow-close-monitor" style="flex:1;padding:10px;background:#e0e0e0;color:#666;border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px;">Cerrar</button>
+            <button id="workflow-pause-toggle" style="flex:1;padding:10px;background:#FF9800;color:white;border: none;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px;">⏸ Pausar</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(monitorPanel);
+
+    statusElement = document.getElementById('workflow-status-badge');
+    logElement = document.getElementById('workflow-activity-log');
+    progressBar = document.getElementById('workflow-progress-bar');
+
+    const arrowBtn = document.getElementById('workflow-monitor-arrow');
+    const toggleBtn = document.getElementById('toggle-workflow-monitor');
+    const container = document.getElementById('aranda-workflow-panel-incidente');
+
+    function updateToggleState() {
+      if (isWorkflowMinimized) {
+        container.style.display = 'none';
+        arrowBtn.style.display = 'flex';
+      } else {
+        container.style.display = 'block';
+        arrowBtn.style.display = 'none';
+      }
+    }
+
+    updateToggleState();
+
+    // Mostrar panel al clickear flecha
+    arrowBtn.addEventListener('click', () => {
+      isWorkflowMinimized = false;
+      updateToggleState();
+    });
+
+    // Ocultar panel al clickear "Ocultar"
+    toggleBtn.addEventListener('click', () => {
+      isWorkflowMinimized = true;
+      updateToggleState();
+    });
+
+    document.getElementById('workflow-close-monitor').addEventListener('click', () => {
+      monitorPanel.style.display = 'none';
+    });
+
+    document.getElementById('workflow-pause-toggle').addEventListener('click', function() {
+      window.__WorkflowState.pausado = !window.__WorkflowState.pausado;
+      if (window.__WorkflowState.pausado) {
+        this.textContent = '▶ Reanudar';
+        this.style.background = '#4CAF50';
+        addLog('⏸ Workflow PAUSADO por el usuario', 'warning');
+        updateStatus('⏸ Pausado por el usuario');
+      } else {
+        this.textContent = '⏸ Pausar';
+        this.style.background = '#FF9800';
+        addLog('▶ Workflow REANUDADO por el usuario', 'success');
+        updateStatus('▶ Workflow reanudado');
+      }
+    });
+  }
+
+  function updateStatus(text){
+    if (statusElement) statusElement.textContent = text;
+  }
+
+  function updateStepStatus(stepNumber, status, message) {
+    const stepEl = document.getElementById(`workflow-step-${stepNumber}`);
+    if (!stepEl) return;
+
+    const colors = {
+      pending: '#ccc',
+      running: '#2196F3',
+      success: '#4CAF50',
+      error: '#F44336',
+      warning: '#FF9800'
+    };
+
+    const icons = {
+      pending: '⏳',
+      running: '🔄',
+      success: '✅',
+      error: '❌',
+      warning: '⚠️'
+    };
+
+    stepEl.style.borderLeftColor = colors[status] || '#ccc';
+    const messageEl = stepEl.querySelector('div:last-child');
+    if (messageEl) {
+      messageEl.textContent = `${icons[status]} ${message}`;
+      messageEl.style.color = colors[status] || '#666';
+    }
+  }
+
+  function addLog(message, type){
+    type = type || 'info';
+    if (!logElement) return;
+    const colors = { info: '#2196F3', success: '#4CAF50', error: '#F44336', warning: '#FF9800', searching: '#9C27B0' };
+    const timestamp = new Date().toLocaleTimeString('es-CO', {hour: '2-digit', minute:  '2-digit', second: '2-digit'});
+    const logEntry = document.createElement('div');
+    logEntry.style.cssText = 'margin-bottom:6px;padding:6px 8px;background: white;border-radius:4px;border-left:3px solid ' + (colors[type] || colors.info) + ';';
+    logEntry.innerHTML = '<span style="color:#999;">[' + timestamp + ']</span> <span style="color:' + (colors[type] || colors.info) + ';">' + message + '</span>';
+    logElement.insertBefore(logEntry, logElement.firstChild);
+    while (logElement.children.length > 50) {
+      logElement.removeChild(logElement.lastChild);
+    }
+    console.log('[WORKFLOW]', message);
+  }
+
+  function updateProgress(percent){
+    if (progressBar) progressBar.style.width = percent + '%';
+  }
+
+  /* ========================================================================== */
+  /* PASO 1: DETECTAR INCIDENTE Y VERIFICAR REGISTRADO                         */
+  /* ========================================================================== */
+
+  async function paso1_ValidacionesIniciales() {
+    updateStepStatus(1, 'running', 'Iniciando validaciones...');
+    updateStatus('🔍 Analizando tipo de caso...');
+    updateProgress(5);
+    addLog('=== PASO 1: Verificación de Tipo y Estado ===', 'info');
+
+    // 1. Verificar si es Incidente
+    let esIncidenteConfirmado = false;
+
+    const headers = document.querySelectorAll('h2, h1, .enviroment__title, .module-name');
+    for (let i = 0; i < headers.length; i++) {
+        const texto = (headers[i].textContent || '').trim().toLowerCase();
+
+        if (texto.includes('requerimiento') || texto.includes('servicio')) {
+            addLog('🛑 DETENIDO: Es un "Requerimiento" (No Incidente)', 'error');
+            updateStepStatus(1, 'error', 'Es Requerimiento');
+            updateStatus('🛑 Detenido: No es Incidente');
+            return false;
+        }
+
+        if (texto === 'incidente' || texto === 'incidentes' || texto.includes('incidente')) {
+            esIncidenteConfirmado = true;
+            headers[i].style.background = 'yellow';
+            headers[i].style.color = 'black';
+            addLog('✅ Confirmado: Es un "Incidente"', 'success');
+            break;
+        }
+    }
+
+    if (!esIncidenteConfirmado) {
+        const rutas = document.querySelectorAll('.breadcrumb, .navigation-path');
+        for (let j = 0; j < rutas.length; j++) {
+            const rutaTexto = (rutas[j].textContent || '').toLowerCase();
+            if (rutaTexto.includes('requerimiento')) {
+                addLog('🛑 DETENIDO: Ruta indica Requerimiento', 'error');
+                updateStepStatus(1, 'error', 'Es Requerimiento');
+                return false;
+            }
+        }
+        if (document.body.innerText.toLowerCase().includes('incidente #')) {
+             esIncidenteConfirmado = true;
+             addLog('✅ Confirmado por texto en cuerpo: Es Incidente', 'success');
+        }
+    }
+
+    if (!esIncidenteConfirmado) {
+        addLog('⚠️ No se pudo confirmar si es Incidente. Reintentando...', 'warning');
+        await sleep(2000);
+        if (document.querySelector('h2')?.textContent.toLowerCase().includes('incidente')) {
+             esIncidenteConfirmado = true;
+        } else {
+             addLog('🛑 No es un Incidente claro. Deteniendo.', 'error');
+             updateStepStatus(1, 'error', 'Tipo no identificado');
+             return false;
+        }
+    }
+
+    // 2. Verificar si está en "Registrado"
+    updateProgress(15);
+    updateStatus('⏳ Esperando 10s para verificar Estado...');
+    addLog('⏳ Esperando 15s antes de leer el estado...', 'info');
+
+    await sleep(15000);
+
+    updateStatus('🔍 Verificando estado "Registrado"...');
+    addLog('Verificando estado actual del caso...', 'searching');
+
+    function obtenerEstadoTexto() {
+        const kInputs = document.querySelectorAll('.k-input');
+        for (let el of kInputs) {
+            const txt = (el.textContent || '').trim().toLowerCase();
+            if (['registrado', 'en proceso', 'identificación', 'cerrado', 'solucionado'].some(s => txt.includes(s))) {
+                return { texto: txt, element: el };
+            }
+        }
+        const spans = document.querySelectorAll('span');
+        for (let s of spans) {
+            if (s.textContent.trim().toLowerCase() === 'registrado') {
+                 if (s.offsetParent !== null) return { texto: 'registrado', element: s };
+            }
+        }
+        return { texto: 'desconocido', element: null };
+    }
+
+    const estadoInfo = obtenerEstadoTexto();
+    const estadoActual = estadoInfo.texto;
+
+    if (estadoActual.includes('registrado')) {
+        addLog('✅ Estado confirmado: "Registrado".', 'success');
+        if (estadoInfo.element) {
+            estadoInfo.element.style.border = '2px solid green';
+        }
+        updateStepStatus(1, 'success', 'Incidente + Registrado');
+        updateProgress(33);
+        window.__WorkflowState.incidenteDetectado = true;
+        return true;
+    } else {
+        addLog(`🛑 DETENIDO: El estado es "${estadoActual}" (No es Registrado)`, 'error');
+        updateStepStatus(1, 'error', `Estado: ${estadoActual}`);
+        updateStatus(`🛑 Pausado: Estado ${estadoActual}`);
+
+        const alert = document.createElement('div');
+        alert.style.cssText = 'position:fixed;top:10%;left:50%;transform:translateX(-50%);background:#ff4444;color:white;padding:15px;border-radius:5px;z-index:1000000;font-weight:bold;box-shadow:0 5px 15px rgba(0,0,0,0.5);';
+        alert.textContent = `⚠️ Proceso DETENIDO: El estado actual es "${estadoActual}"`;
+        document.body.appendChild(alert);
+        setTimeout(() => alert.remove(), 6000);
+
+        return false;
+    }
+  }
+
+  /* ========================================================================== */
+  /* PASO 2: LLENAR DATOS ADICIONALES (CON CHECK DE CAMPOS "NO CAMBIA")        */
+  /* ========================================================================== */
+
+  async function paso2_LlenarDatosAdicionales() {
+    if (window.__WorkflowState.pausado) {
+      addLog('⏸ Paso 2 pausado, esperando...', 'warning');
+      while (window.__WorkflowState.pausado) {
+        await sleep(1000);
+      }
+      addLog('▶ Paso 2 reanudado', 'info');
+    }
+
+    updateStepStatus(2, 'running', 'Llenando datos...');
+    updateStatus('📝 Paso 2: Llenando Datos Adicionales...');
+    updateProgress(35);
+    addLog('=== PASO 2: Llenar Datos Adicionales ===', 'info');
+
+    // 1. Ir a la pestaña "Datos Adicionales"
+    try {
+      const datosAdicionales = document.querySelector('li.fc-tab-link.ng-scope[data-tab="tab_fields_extend"]');
+      if (datosAdicionales) {
+        datosAdicionales.click();
+        await sleep(2500);
+        addLog('✔ Pestaña "Datos Adicionales" abierta', 'success');
+      } else {
+        addLog('⚠️ No se encontró pestaña "Datos Adicionales" (puede que ya esté activa)', 'warning');
+      }
+    } catch (e) {
+      addLog(`Error abriendo Datos Adicionales: ${e.message}`, 'error');
+    }
+
+    updateProgress(40);
+
+    // --- NUEVO: VERIFICAR SI HAY DATOS EN CAMPOS PROTEGIDOS ---
+    const camposNoCambia = ['__text1784', '__text1785', '__textArea1793', '__text3255'];
+    let tieneDatosPrevios = false;
+
+    const txtsCheck = document.querySelectorAll('textarea[ng-model="field.ValueField"], input[type="text"][ng-model="field.ValueField"]');
+    for (const t of txtsCheck) {
+        if (camposNoCambia.includes(t.name) && t.value && t.value.trim() !== '') {
+            tieneDatosPrevios = true;
+            break;
+        }
+    }
+
+    if (window.jQuery) {
+        window.jQuery('input[kendo-date-time-picker]').each(function() {
+            const w = window.jQuery(this).data("kendoDateTimePicker");
+            if (w && this.id === 'date-field-1792' && w.value() !== null) {
+                tieneDatosPrevios = true;
+            }
+        });
+    }
+
+    let validacionExitosa = false;
+
+    if (tieneDatosPrevios) {
+        addLog('✔ Información detectada en campos protegidos. OMITIENDO selección de dropdowns.', 'success');
+        validacionExitosa = true; // Saltamos validación de los dropdowns
+    } else {
+        // FUNCIÓN INTERNA PARA BUSCAR Y SELECCIONAR EN KENDO
+        async function selectKendoDropdown(triggerElement, searchText) {
+            if (!triggerElement) return false;
+            const arrow = triggerElement.querySelector('.k-select') || triggerElement.querySelector('.k-icon') || triggerElement;
+            arrow.click();
+            await sleep(1500);
+            const openLists = document.querySelectorAll('ul.k-list[aria-hidden="false"], div.k-animation-container[style*="display: block"] ul');
+            for (const list of openLists) {
+                const items = list.querySelectorAll("li");
+                for(let j=0; j<items.length; j++) {
+                    const txt = (items[j].textContent || '').toLowerCase().trim();
+                    if(txt === searchText.toLowerCase() || txt.includes(searchText.toLowerCase())) {
+                        items[j].scrollIntoView({block: "center"});
+                        items[j].click();
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        // --- SELECCIÓN AGRESIVA: IMPACTO EN EL NEGOCIO -> "BAJO" ---
+        let bajoSeleccionado = false;
+        let intentosBajo = 0;
+        while (!bajoSeleccionado && intentosBajo < 3) {
+            intentosBajo++;
+            addLog(`Intentando seleccionar "Bajo" (Intento ${intentosBajo})...`, 'searching');
+            const selectorsBajo = [
+                'span.k-dropdown[aria-owns*="additional_3014"]',
+                'span[title*="impacto en el negocio"]',
+                'span[title="Bajo"]',
+                'span.k-dropdown[aria-labelledby*="additional_3014"]'
+            ];
+            let dropdownBajo = null;
+            for (let sel of selectorsBajo) {
+                dropdownBajo = document.querySelector(sel);
+                if (dropdownBajo && !(dropdownBajo.textContent || '').includes('Incidente Menor')) break;
+            }
+            if (!dropdownBajo) {
+                 const labels = document.querySelectorAll('label, span');
+                 for (let l of labels) {
+                     if ((l.textContent || '').includes('impacto en el negocio')) {
+                         let next = l.nextElementSibling;
+                         for(let k=0; k<5; k++) {
+                             if(!next) break;
+                             if(next.querySelector('.k-dropdown') || next.classList.contains('k-dropdown')) {
+                                 dropdownBajo = next.querySelector('.k-dropdown') || next;
+                                 break;
+                             }
+                             next = next.nextElementSibling;
+                         }
+                     }
+                     if (dropdownBajo) break;
+                 }
+            }
+            if (dropdownBajo) {
+                bajoSeleccionado = await selectKendoDropdown(dropdownBajo, "Bajo");
+                if (bajoSeleccionado) addLog('✔ Opción "Bajo" seleccionada.', 'success');
+            }
+            if (!bajoSeleccionado) await sleep(1000);
+        }
+
+        updateProgress(45);
+
+        // --- SELECCIÓN AGRESIVA: TIPO DE INCIDENTE -> "INCIDENTE MENOR" ---
+        let menorSeleccionado = false;
+        let intentosMenor = 0;
+        while (!menorSeleccionado && intentosMenor < 3) {
+            intentosMenor++;
+            addLog(`Intentando seleccionar "Incidente Menor" (Intento ${intentosMenor})...`, 'searching');
+            const selectorsMenor = [
+                'span.k-dropdown[aria-owns*="additional_3155"]',
+                'span[title*="Tipo de Incidente"]',
+                'span[title="Incidente Menor"]'
+            ];
+            let dropdownMenor = null;
+            for (let sel of selectorsMenor) {
+                dropdownMenor = document.querySelector(sel);
+                if (dropdownMenor) break;
+            }
+            if (!dropdownMenor) {
+                 const allDrops = document.querySelectorAll('li[data-tab="tab_fields_extend"] ~ div span.k-dropdown');
+                 if (allDrops.length > 0) {
+                     for (let d of allDrops) {
+                         if (!(d.textContent||'').includes('Bajo')) {
+                             dropdownMenor = d;
+                         }
+                     }
+                 }
+            }
+            if (dropdownMenor) {
+                menorSeleccionado = await selectKendoDropdown(dropdownMenor, "Incidente Menor");
+                if (menorSeleccionado) addLog('✔ Opción "Incidente Menor" seleccionada.', 'success');
+            }
+            if (!menorSeleccionado) await sleep(1000);
+        }
+    }
+
+    updateProgress(48);
+
+    // --- LLENADO DE TEXTOS Y FECHAS RESTANTES ---
+    addLog('Comprobando y llenando campos de texto y fechas restantes...', 'searching');
+    const txts = document.querySelectorAll('textarea[ng-model="field.ValueField"], input[type="text"][ng-model="field.ValueField"]');
+    for (const t of txts) {
+        // Si el campo tiene protección de datos, no lo pisamos
+        if (camposNoCambia.includes(t.name) && t.value && t.value.trim() !== '') {
+            addLog(`✔ Campo con datos conservado (${t.name}), omitiendo su llenado...`, 'success');
+            continue;
+        }
+
+        // Llenar por defecto con "1" si es textarea o si es el campo __text3247 o __text3235, y está vacío
+        if ((t.tagName.toLowerCase() === 'textarea' || t.name === '__text3247' || t.name === '__text3235') && (!t.value || t.value.trim() === '')) {
+            t.value = "1";
+            t.dispatchEvent(new Event("input", {bubbles: true}));
+            t.dispatchEvent(new Event("change", {bubbles: true}));
+
+            if (t.name === '__text3247' || t.name === '__text3235') {
+                addLog(`✔ Campo extra (${t.name}) llenado con "1".`, 'success');
+            }
+        }
+    }
+
+    // Llenar Fechas (Kendo Fix) respetando los datos protegidos
+    const now = new Date();
+    now.setMinutes(0); now.setSeconds(0);
+    if (window.jQuery) {
+        window.jQuery('input[kendo-date-time-picker]').each(function() {
+            const w = window.jQuery(this).data("kendoDateTimePicker");
+            if (w) {
+                if (this.id === 'date-field-1792' && w.value() !== null) {
+                    addLog('✔ Fecha de falla ya tiene datos, conservando...', 'success');
+                } else {
+                    w.value(now); w.trigger("change");
+                }
+            }
+        });
+    }
+
+    updateProgress(55);
+
+    // =================================================================
+    // VALIDACIÓN ESTRICTA DE DROPDOWNS (SOLO SI NO TENÍA DATOS PREVIOS)
+    // =================================================================
+    if (!tieneDatosPrevios) {
+        addLog('🔍 VALIDANDO DATOS (MAX 2 INTENTOS)...', 'searching');
+
+        function validarTextosVisibles() {
+            const bodyText = document.querySelector('div[id*="tab_fields_extend"]')?.innerText || document.body.innerText;
+            const veBajo = bodyText.includes('Bajo');
+            const veMenor = bodyText.includes('Incidente Menor');
+
+            const kInputs = document.querySelectorAll('.k-input');
+            let foundBajoExact = false;
+            let foundMenorExact = false;
+
+            for (let k of kInputs) {
+                const t = k.textContent.trim();
+                if (t === 'Bajo') foundBajoExact = true;
+                if (t === 'Incidente Menor') foundMenorExact = true;
+            }
+            return { bajo: foundBajoExact || veBajo, menor: foundMenorExact || veMenor };
+        }
+
+        for (let v = 0; v < 2; v++) {
+            const res = validarTextosVisibles();
+
+            if (res.bajo && res.menor) {
+                addLog('✅ VALIDACIÓN EXITOSA: Datos correctos.', 'success');
+                validacionExitosa = true;
+                break;
+            } else {
+                addLog(`⚠️ Validación fallida (Intento ${v+1}/2). Reintentando llenado...`, 'warning');
+                if (!res.bajo) {
+                     const d = document.querySelector('span.k-dropdown[aria-owns*="additional_3014"]') || document.querySelector('span[title*="impacto"]');
+                }
+                await sleep(2000);
+            }
+        }
+
+        if (!validacionExitosa) {
+            addLog('⚠️ ADVERTENCIA: No se validaron todos los datos tras 2 intentos. CONTINUANDO...', 'warning');
+            updateStepStatus(2, 'warning', 'Continuando sin validar');
+        }
+    }
+
+    // Volver a la pestaña principal
+    try {
+      const tab = document.querySelector('li.fc-tab-link.ng-binding[data-tab="tab_form"]');
+      if (tab) {
+        tab.click();
+        await sleep(2000);
+        addLog('✔ Regresado a pestaña "Caso No."', 'success');
+      }
+    } catch(e) {}
+
+    if (validacionExitosa) {
+        updateStepStatus(2, 'success', 'Datos Validados OK');
+    }
+
+    updateProgress(66);
+    window.__WorkflowState.datosLlenados = true;
+    return true;
+  }
+
+  /* ========================================================================== */
+  /* PASO 3: CAMBIAR ESTADO A IDENTIFICACIÓN                                   */
+  /* ========================================================================== */
+
+  async function paso3_CambiarEstado() {
+    if (window.__WorkflowState.pausado) {
+      addLog('⏸ Paso 3 pausado, esperando...', 'warning');
+      while (window.__WorkflowState.pausado) {
+        await sleep(1000);
+      }
+      addLog('▶ Paso 3 reanudado', 'info');
+    }
+
+    updateStepStatus(3, 'running', 'Cambiando estado...');
+    updateStatus('🔄 Paso 3: Cambiando a Identificación...');
+    updateProgress(70);
+    addLog('=== PASO 3: Cambiar Estado a Identificación ===', 'info');
+
+    const ESTADO_DESTINO = 'identificación';
+
+    // Verificación rápida si ya está
+    const kInputs = document.querySelectorAll('.k-input');
+    for (const el of kInputs) {
+        if ((el.textContent || '').toLowerCase().includes('identificación')) {
+            addLog('✅ El estado ya es "Identificación"', 'success');
+            updateStepStatus(3, 'success', 'Ya está en Identificación');
+            window.__WorkflowState.estadoCambiado = true;
+            return true;
+        }
+    }
+
+    addLog('Buscando dropdown de estado...', 'searching');
+    let cambioExitoso = false;
+
+    // Método Robusto de Kendo API primero (es más fiable para estados)
+    if (window.jQuery) {
+      try {
+        const $ = window.jQuery;
+        $('input[name="StateId"], input[id*="State"]').each(function(){
+           if(cambioExitoso) return;
+           const ddl = $(this).data("kendoDropDownList");
+           if(ddl) {
+               // Buscar el item que contiene "identificación"
+               const data = ddl.dataSource.data();
+               for(let item of data) {
+                   if(item.Name && item.Name.toLowerCase().includes(ESTADO_DESTINO)) {
+                       ddl.value(item.Id);
+                       ddl.trigger("change");
+                       addLog(`✔ Estado cambiado vía API a: ${item.Name}`, 'success');
+                       cambioExitoso = true;
+                       return;
+                   }
+               }
+           }
+        });
+      } catch(e) {}
+    }
+
+    // Fallback Manual
+    if (!cambioExitoso) {
+         const dropdowns = document.querySelectorAll('span.k-dropdown');
+         for (const dd of dropdowns) {
+            if ((dd.textContent || '').toLowerCase().includes('registrado')) {
+                const btn = dd.querySelector('.k-select') || dd;
+                btn.click();
+                await sleep(1500);
+                const items = document.querySelectorAll('ul.k-list[aria-hidden="false"] li');
+                for (const item of items) {
+                    if ((item.textContent || '').toLowerCase().includes(ESTADO_DESTINO)) {
+                        item.click();
+                        cambioExitoso = true;
+                        addLog('✔ Estado cambiado manualmente', 'success');
+                        break;
+                    }
+                }
+                if (cambioExitoso) break;
+            }
+         }
+    }
+
+    updateProgress(85);
+
+    if (cambioExitoso) {
+        addLog('✔ Estado seleccionado correctamente.', 'success');
+        window.__WorkflowState.estadoCambiado = true;
+        updateStepStatus(3, 'success', 'Estado seleccionado');
+        return true;
+    }
+
+    addLog('❌ No se pudo cambiar el estado', 'error');
+    updateStepStatus(3, 'error', 'No se pudo cambiar');
+    return false;
+  }
+
+  /* ========================================================================== */
+  /* FUNCIONES AUXILIARES: GUARDAR Y SALIR                                      */
+  /* ========================================================================== */
+
+  function findAndClickGuardar(){
+    var i;
+    var buttons = document.getElementsByTagName('button');
+    for (i = 0; i < buttons.length; i++) {
+      if ((buttons[i].textContent || '').trim().toLowerCase() === 'guardar') {
+        buttons[i].click();
+        addLog('Click en Guardar', 'success');
+        return true;
+      }
+    }
+    var allElements = document.querySelectorAll('a, div, span');
+    for (i = 0; i < allElements.length; i++) {
+      if ((allElements[i].textContent || '').trim().toLowerCase() === 'guardar') {
+        allElements[i].click();
+        addLog('Click en Guardar', 'success');
+        return true;
+      }
+    }
+    addLog('No se encontró botón Guardar', 'warning');
+    return false;
+  }
+
+  function findAndClickSalir(){
+    var i;
+    var buttons = document.getElementsByTagName('button');
+    for (i = 0; i < buttons.length; i++) {
+      if ((buttons[i].textContent || '').trim().toLowerCase() === 'salir') {
+        buttons[i].click();
+        addLog('Click en Salir', 'success');
+        return true;
+      }
+    }
+    var allElements = document.querySelectorAll('a, div, span');
+    for (i = 0; i < allElements.length; i++) {
+      if ((allElements[i].textContent || '').trim().toLowerCase() === 'salir') {
+        allElements[i].click();
+        addLog('Click en Salir', 'success');
+        return true;
+      }
+    }
+    addLog('No se encontró botón Salir', 'warning');
+    return false;
+  }
+
+  /* ========================================================================== */
+  /* EJECUTOR PRINCIPAL DEL WORKFLOW                                           */
+  /* ========================================================================== */
+
+  async function ejecutarWorkflow() {
+    if (window.__WorkflowState.procesoIniciado) return;
+
+    window.__WorkflowState.procesoIniciado = true;
+    createMonitorUI();
+
+    addLog('🚀 Iniciando Workflow Aranda v16.5', 'success');
+    addLog('Secuencia: Validar -> Llenar (Omitir si hay datos) -> Estado -> Guardar', 'info');
+
+    // --- PASO 1: VALIDACIONES ---
+    const validacionOK = await paso1_ValidacionesIniciales();
+    if (!validacionOK) return;
+
+    addLog('⏳ Esperando 5 segundos antes de continuar...', 'info');
+    await sleep(5000);
+
+    // --- PASO 2: LLENAR DATOS ---
+    await paso2_LlenarDatosAdicionales();
+
+    addLog('⏳ Esperando 3 segundos antes de cambiar estado...', 'info');
+    await sleep(3000);
+
+    // --- PASO 3: CAMBIAR ESTADO ---
+    const estadoOK = await paso3_CambiarEstado();
+    if (estadoOK) {
+
+      // === PASO EXTRA: GUARDAR Y SALIR ===
+      addLog('💾 Procediendo a Guardar...', 'info');
+      await sleep(5000);
+      findAndClickGuardar();
+
+      addLog('⏳ Esperando 10 segundos post-guardado para Salir...', 'info');
+      await sleep(10000);
+
+      findAndClickSalir();
+
+      addLog('🎉 WORKFLOW COMPLETADO EXITOSAMENTE', 'success');
+      updateStatus('✅ Workflow Completado');
+    } else {
+      addLog('⚠️ Workflow completado sin guardar (error en estado)', 'warning');
+      updateStatus('⚠️ Completado con advertencias');
+    }
+  }
+
+  /* ========================================================================== */
+  /* INICIO AUTOMÁTICO                                                         */
+  /* ========================================================================== */
+
+  setTimeout(ejecutarWorkflow, 2000);
+
+})();
