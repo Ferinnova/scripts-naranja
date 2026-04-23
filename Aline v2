@@ -1,0 +1,55 @@
+// @name         Aranda Keep-Alive v2 (Fuerte)
+// @namespace    https://aranda.positiva.gov.co/
+// @version      2.0
+// @description  Evita cierre de sesión simulando actividad real contra la API de Aranda.
+// @match        https://aranda.positiva.gov.co/ASDKV8/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // CONFIGURACIÓN: Intervalo más corto (3 minutos)
+    const INTERVALO = 3 * 60 * 1000;
+
+    console.log("[Keep-Alive v2] Iniciado - Modo Activo");
+
+    function mantenerSesion() {
+        // ESTRATEGIA 1: Intentar llamar a un servicio web ligero de Aranda
+        // Normalmente Aranda consulta notificaciones o fecha del servidor
+        // Intentaremos hacer un GET a la página principal forzando recarga de timestamp
+        const urlPing = window.location.protocol + "//" + window.location.host + window.location.pathname + "?keepalive=" + new Date().getTime();
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", urlPing, true);
+
+        // Importante: Decirle al servidor que es una petición AJAX
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log(`[Keep-Alive] ✅ Conexión exitosa a las ${new Date().toLocaleTimeString()}`);
+                    indicador.style.background = "#00ff00"; // Verde flash
+                    setTimeout(() => indicador.style.background = "green", 500);
+                } else {
+                    console.warn("[Keep-Alive] ⚠️ El servidor respondió raro: " + xhr.status);
+                    indicador.style.background = "orange";
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    // Indicador visual (Puntito verde abajo a la izquierda)
+    const indicador = document.createElement('div');
+    indicador.style.cssText = "position:fixed;bottom:2px;left:2px;width:8px;height:8px;background:green;border-radius:50%;z-index:99999;pointer-events:none;";
+    document.body.appendChild(indicador);
+
+    // Ejecutar cada 3 minutos
+    setInterval(mantenerSesion, INTERVALO);
+
+    // Ejecutar una vez al inicio
+    setTimeout(mantenerSesion, 5000);
+
+})();
