@@ -1,1 +1,454 @@
-function _0x251a(_0x16a301,_0x5be59d){_0x16a301=_0x16a301-0x1f2;const _0xdb6e35=_0xdb6e();let _0x251aa8=_0xdb6e35[_0x16a301];return _0x251aa8;}(function(_0x1b2ef9,_0x59f4be){const _0x43737e=_0x251a,_0x49bcac=_0x1b2ef9();while(!![]){try{const _0x5c7e51=-parseInt(_0x43737e(0x258))/0x1*(parseInt(_0x43737e(0x22f))/0x2)+-parseInt(_0x43737e(0x22b))/0x3*(parseInt(_0x43737e(0x273))/0x4)+-parseInt(_0x43737e(0x202))/0x5*(-parseInt(_0x43737e(0x1f8))/0x6)+parseInt(_0x43737e(0x236))/0x7+-parseInt(_0x43737e(0x23c))/0x8+-parseInt(_0x43737e(0x210))/0x9+parseInt(_0x43737e(0x24e))/0xa*(parseInt(_0x43737e(0x204))/0xb);if(_0x5c7e51===_0x59f4be)break;else _0x49bcac['push'](_0x49bcac['shift']());}catch(_0x34f4ef){_0x49bcac['push'](_0x49bcac['shift']());}}}(_0xdb6e,0x8c502),(function(){'use strict';const _0x4f7ba6=_0x251a;console[_0x4f7ba6(0x26b)](_0x4f7ba6(0x1f4));const _0x1bfe28=function(){(function(){const _0x1f90ae=_0x251a;try{console[_0x1f90ae(0x26b)](_0x1f90ae(0x215));const _0x17f855={'mode':_0x1f90ae(0x1fe),'maxToOpen':0x14,'delayMs':0x258,'waitTimeoutMs':0x1388,'pollIntervalMs':0x12c,'autoScanIntervalMs':0x61a8};let _0x5ea6b9=![],_0x12ef91=0x0,_0x199c3b=0x0,_0x2f4c20=0x0,_0x374ab4=!![];function _0xf8c70d(..._0xcc4fce){const _0x1e9a06=_0x1f90ae;console[_0x1e9a06(0x26b)]('[abrir-todos][injected]',..._0xcc4fce);}function _0x4b6491(_0x2b144a){return new Promise(_0x2bf840=>setTimeout(_0x2bf840,_0x2b144a));}function _0x190c7a(_0x1ec966){const _0x577f66=_0x1f90ae;try{return['pointerdown',_0x577f66(0x201),_0x577f66(0x20d),_0x577f66(0x264)]['forEach'](_0x25cfdd=>{const _0x5e3e03=_0x577f66;_0x1ec966[_0x5e3e03(0x20b)](new MouseEvent(_0x25cfdd,{'bubbles':!![],'cancelable':!![],'view':window}));}),!![];}catch(_0x3c9a3b){return![];}}function _0x146fa5(){const _0x74b316=_0x1f90ae,_0x1e14c0=document[_0x74b316(0x231)](_0x74b316(0x251));_0x1e14c0['id']=_0x74b316(0x260),_0x1e14c0[_0x74b316(0x1f5)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20FLECHA\x20MINIMIZADA\x20SIN\x20FONDO\x20EN\x20EL\x20CENTRO\x20ABAJO\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22registrados-monitor-arrow\x22\x20style=\x22position:\x20fixed;\x20bottom:\x2020px;\x20left:\x2050%;\x20transform:\x20translateX(-50%);\x20z-index:\x20999999;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20transparent;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#667eea;\x20/*\x20Color\x20de\x20la\x20flecha\x20*/\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2010px\x2030px;\x20/*\x20Área\x20donde\x20puedes\x20hacer\x20clic\x20*/\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20flex;\x20align-items:\x20center;\x20justify-content:\x20center;\x20transition:\x20all\x200.2s;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2024px;\x20font-weight:\x20bold;\x20line-height:\x201;\x20text-shadow:\x200\x202px\x205px\x20rgba(0,0,0,0.5);\x22>▲</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20PANEL\x20COMPLETO\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22registrados-monitor-container\x22\x20style=\x22position:\x20fixed;\x20bottom:\x200px;\x20left:\x2050%;\x20z-index:\x20999999;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20linear-gradient(135deg,\x20#667eea\x200%,\x20#764ba2\x20100%);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20padding:\x2015px\x2020px;\x20border-radius:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x200\x208px\x2032px\x20rgba(0,0,0,0.3);\x20font-family:\x20\x27Segoe\x20UI\x27,\x20Arial,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20min-width:\x20220px;\x20backdrop-filter:\x20blur(10px);\x20display:\x20none;\x22>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x20align-items:\x20center;\x20margin-bottom:\x2012px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20style=\x22margin:\x200;\x20font-size:\x2016px;\x20font-weight:\x20600;\x22>📋\x20Monitor\x20Registrados</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22registrados-monitor-toggle\x22\x20style=\x22background:\x20rgba(255,255,255,0.2);\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20padding:\x205px\x2010px;\x20border-radius:\x205px;\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2012px;\x20font-weight:\x20500;\x22>▶\x20Ocultar</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20rgba(255,255,255,0.15);\x20padding:\x2010px;\x20border-radius:\x208px;\x20margin-bottom:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x20margin-bottom:\x205px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2012px;\x20opacity:\x200.9;\x22>Estado:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22registrados-monitor-status\x22\x20style=\x22font-size:\x2012px;\x20font-weight:\x20600;\x22>🟢\x20Activo</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22registrados-monitor-content\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20rgba(255,255,255,0.15);\x20padding:\x2010px;\x20border-radius:\x208px;\x20margin-bottom:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x20margin-bottom:\x205px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2012px;\x20opacity:\x200.9;\x22>Escaneos:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22registrados-monitor-scans\x22\x20style=\x22font-size:\x2012px;\x20font-weight:\x20600;\x22>0</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2012px;\x20opacity:\x200.9;\x22>Próximo\x20en:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22registrados-monitor-countdown\x22\x20style=\x22font-size:\x2012px;\x20font-weight:\x20600;\x22>--</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20rgba(255,255,255,0.15);\x20padding:\x2010px;\x20border-radius:\x208px;\x20margin-bottom:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x20margin-bottom:\x205px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2012px;\x20opacity:\x200.9;\x22>✅\x20Procesados:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22registrados-monitor-success\x22\x20style=\x22font-size:\x2012px;\x20font-weight:\x20600;\x20color:\x20#4ade80;\x22>0</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2012px;\x20opacity:\x200.9;\x22>❌\x20Fallidos:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22registrados-monitor-failed\x22\x20style=\x22font-size:\x2012px;\x20font-weight:\x20600;\x20color:\x20#f87171;\x22>0</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22registrados-monitor-log\x22\x20style=\x22background:\x20rgba(0,0,0,0.3);\x20padding:\x208px;\x20border-radius:\x206px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2011px;\x20max-height:\x2050px;\x20overflow-y:\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20\x27Courier\x20New\x27,\x20monospace;\x20line-height:\x201.4;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22opacity:\x200.7;\x22>Esperando\x20primer\x20escaneo...</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22margin-top:\x2010px;\x20display:\x20flex;\x20gap:\x208px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22registrados-monitor-pause\x22\x20style=\x22flex:\x201;\x20background:\x20rgba(255,255,255,0.2);\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20padding:\x208px;\x20border-radius:\x206px;\x20cursor:\x20pointer;\x20font-size:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20600;\x20transition:\x20all\x200.2s;\x22>⏸\x20Pausar</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22registrados-monitor-scan-now\x22\x20style=\x22flex:\x201;\x20background:\x20rgba(255,255,255,0.3);\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20padding:\x208px;\x20border-radius:\x206px;\x20cursor:\x20pointer;\x20font-size:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20600;\x20transition:\x20all\x200.2s;\x22>▶\x20Escanear\x20Ahora</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',document[_0x74b316(0x1ff)][_0x74b316(0x238)](_0x1e14c0);const _0x2d1e12=document[_0x74b316(0x229)](_0x74b316(0x224)),_0x2acbed=document[_0x74b316(0x229)](_0x74b316(0x241)),_0x3f7556=document[_0x74b316(0x229)](_0x74b316(0x26d));function _0x3ecfa0(){const _0x1c4abc=_0x74b316;_0x374ab4?(_0x3f7556[_0x1c4abc(0x263)][_0x1c4abc(0x225)]=_0x1c4abc(0x267),_0x2d1e12['style']['display']=_0x1c4abc(0x205)):(_0x3f7556[_0x1c4abc(0x263)][_0x1c4abc(0x225)]=_0x1c4abc(0x271),_0x2d1e12['style'][_0x1c4abc(0x225)]=_0x1c4abc(0x267));}_0x3ecfa0(),_0x2d1e12['addEventListener'](_0x74b316(0x264),()=>{_0x374ab4=![],_0x3ecfa0();}),_0x2acbed['addEventListener'](_0x74b316(0x264),()=>{_0x374ab4=!![],_0x3ecfa0();});let _0x2d49a7=![];const _0x119ac6=document['getElementById']('registrados-monitor-pause');return _0x119ac6[_0x74b316(0x248)](_0x74b316(0x264),()=>{const _0x40803d=_0x74b316;_0x2d49a7=!_0x2d49a7,_0x119ac6[_0x40803d(0x221)]=_0x2d49a7?_0x40803d(0x21f):_0x40803d(0x21a),_0x119ac6[_0x40803d(0x263)][_0x40803d(0x254)]=_0x2d49a7?_0x40803d(0x20e):_0x40803d(0x268),window['monitorPaused']=_0x2d49a7,_0x3fe307(_0x2d49a7?_0x40803d(0x234):_0x40803d(0x219),'warning');}),document['getElementById'](_0x74b316(0x26c))[_0x74b316(0x248)](_0x74b316(0x264),()=>{const _0x1bef96=_0x74b316;!_0x5ea6b9?(_0x3fe307(_0x1bef96(0x261),_0x1bef96(0x24c)),_0x12d91c()):_0x3fe307(_0x1bef96(0x214),_0x1bef96(0x237));}),_0x1e14c0;}function _0x25e6a6(_0x3277f8,_0xd89c91=_0x1f90ae(0x26a)){const _0x52c109=_0x1f90ae,_0x43557d=document[_0x52c109(0x229)](_0x52c109(0x1f3));if(_0x43557d){const _0x331bae={'active':'🟢','processing':'🔄','paused':'⏸','error':'🔴'};_0x43557d[_0x52c109(0x221)]=(_0x331bae[_0xd89c91]||'🟢')+'\x20'+_0x3277f8;}}function _0x40b6e9(_0x33d1c5){const _0x5c2a44=_0x1f90ae,_0x28384e=document[_0x5c2a44(0x229)](_0x5c2a44(0x252));if(_0x28384e)_0x28384e[_0x5c2a44(0x221)]=_0x33d1c5;}function _0x43774e(){const _0x3df267=_0x1f90ae,_0x21143d=document[_0x3df267(0x229)](_0x3df267(0x212)),_0x5d6931=document['getElementById'](_0x3df267(0x262));if(_0x21143d)_0x21143d[_0x3df267(0x221)]=_0x199c3b;if(_0x5d6931)_0x5d6931[_0x3df267(0x221)]=_0x2f4c20;}function _0x3fe307(_0x1c8b9a,_0x5cbccb=_0x1f90ae(0x26a)){const _0x847aa4=_0x1f90ae,_0x56b0c2=document[_0x847aa4(0x229)](_0x847aa4(0x22e));if(!_0x56b0c2)return;const _0x4f5ec5=new Date()['toLocaleTimeString'](),_0x43fac4={'success':'#4ade80','error':_0x847aa4(0x272),'warning':_0x847aa4(0x1f7),'info':_0x847aa4(0x227),'normal':_0x847aa4(0x259)},_0x9783ad=document[_0x847aa4(0x231)](_0x847aa4(0x251));_0x9783ad['style'][_0x847aa4(0x253)]=_0x43fac4[_0x5cbccb]||_0x43fac4[_0x847aa4(0x26a)],_0x9783ad[_0x847aa4(0x263)]['marginBottom']=_0x847aa4(0x22c),_0x9783ad[_0x847aa4(0x221)]='['+_0x4f5ec5+']\x20'+_0x1c8b9a,_0x56b0c2[_0x847aa4(0x238)](_0x9783ad),_0x56b0c2['scrollTop']=_0x56b0c2[_0x847aa4(0x1fc)];while(_0x56b0c2['children']['length']>0x32){_0x56b0c2['removeChild'](_0x56b0c2['firstChild']);}}function _0x4104c1(){const _0x33f520=_0x1f90ae;let _0x31d511=_0x17f855['autoScanIntervalMs']/0x3e8;const _0x4d032d=document[_0x33f520(0x229)](_0x33f520(0x20c));setInterval(()=>{const _0x1dee6e=_0x33f520;if(window['monitorPaused']){if(_0x4d032d)_0x4d032d[_0x1dee6e(0x221)]=_0x1dee6e(0x226);return;}_0x31d511--;if(_0x31d511<=0x0)_0x31d511=_0x17f855[_0x1dee6e(0x1f6)]/0x3e8;const _0x3379ce=Math[_0x1dee6e(0x22d)](_0x31d511/0x3c),_0x39e5ec=_0x31d511%0x3c;if(_0x4d032d)_0x4d032d[_0x1dee6e(0x221)]=_0x3379ce+':'+_0x39e5ec['toString']()[_0x1dee6e(0x23d)](0x2,'0');},0x3e8);}function _0x8a3eb(){const _0x1b4a38=_0x1f90ae,_0x5461c8=Array['from'](document[_0x1b4a38(0x243)]('table.k-selectable\x20tr,\x20table\x20tr,\x20tr')),_0x1a9a6b=[];return _0x5461c8[_0x1b4a38(0x206)](_0x365885=>{const _0x15f8fe=_0x1b4a38,_0x133690=(_0x365885[_0x15f8fe(0x221)]||'')['trim']();if(!/Registrado/i['test'](_0x133690))return;const _0x1c6d75=_0x365885['querySelector'](_0x15f8fe(0x213))||_0x365885['querySelector'](_0x15f8fe(0x26f));let _0x5dea29=null;if(_0x1c6d75){const _0xcf0ca3=_0x1c6d75[_0x15f8fe(0x266)]&&_0x1c6d75[_0x15f8fe(0x266)](_0x15f8fe(0x1f2)),_0x23da2c=_0xcf0ca3&&_0xcf0ca3[_0x15f8fe(0x239)](/openCase\(\s*(\d+)\s*\)/);if(_0x23da2c)_0x5dea29=Number(_0x23da2c[0x1]);if(!_0x5dea29){const _0x21375d=(_0x1c6d75[_0x15f8fe(0x221)]||'')[_0x15f8fe(0x239)](/\b(\d{4,})\b/);if(_0x21375d)_0x5dea29=Number(_0x21375d[0x1]);}}if(!_0x5dea29){const _0x3bef68=_0x365885[_0x15f8fe(0x23f)](_0x15f8fe(0x244));if(_0x3bef68){const _0x3d1d0f=_0x3bef68['id']?_0x3bef68['id'][_0x15f8fe(0x246)](_0x15f8fe(0x240),''):_0x3bef68['getAttribute']('data-case-id')||'';if(/^\d+$/[_0x15f8fe(0x21c)](_0x3d1d0f))_0x5dea29=Number(_0x3d1d0f);}}if(!_0x5dea29){const _0x187927=_0x133690[_0x15f8fe(0x239)](/\b(\d{4,})\b/);if(_0x187927)_0x5dea29=Number(_0x187927[0x1]);}_0x1a9a6b[_0x15f8fe(0x1f9)]({'row':_0x365885,'caseLink':_0x1c6d75||null,'id':_0x5dea29||null,'rowText':_0x133690});}),_0x1a9a6b['filter'](_0xadef4c=>_0xadef4c['id']||_0xadef4c[_0x1b4a38(0x25b)]);}async function _0x1cb17a(_0x260876,_0x214016){const _0x1ce919=_0x1f90ae,_0x485aeb=Date[_0x1ce919(0x21e)]();while(Date[_0x1ce919(0x21e)]()-_0x485aeb<_0x260876){const _0xc8f277=_0x8a3eb();if(_0xc8f277['length'])return _0xc8f277;await _0x4b6491(_0x214016);}return[];}async function _0x12d91c(){const _0x571055=_0x1f90ae;if(_0x5ea6b9){_0x3fe307('Ya\x20hay\x20un\x20proceso\x20activo',_0x571055(0x237));return;}if(window[_0x571055(0x1fa)]){_0x3fe307(_0x571055(0x20f),_0x571055(0x237));return;}_0x5ea6b9=!![],_0x12ef91++,_0x40b6e9(_0x12ef91),_0x25e6a6(_0x571055(0x217),'processing');let _0x2d8aa0=0x0,_0x97a2bf=0x0;try{_0x3fe307('┏━━\x20Escaneo\x20#'+_0x12ef91+'\x20iniciado\x20━━┓','info');const _0x4a948f=await _0x1cb17a(_0x17f855[_0x571055(0x228)],_0x17f855['pollIntervalMs']);if(!_0x4a948f[_0x571055(0x265)]){_0x3fe307(_0x571055(0x23a),_0x571055(0x24d)),_0x25e6a6(_0x571055(0x24f),_0x571055(0x230));return;}_0x3fe307('Encontrados\x20'+_0x4a948f[_0x571055(0x265)]+_0x571055(0x249),_0x571055(0x24c));const _0x35683b=Math[_0x571055(0x26e)](_0x17f855['maxToOpen'],_0x4a948f[_0x571055(0x265)]);_0x4a948f[_0x571055(0x265)]>_0x17f855['maxToOpen']&&_0x3fe307(_0x571055(0x23e)+_0x17f855['maxToOpen']+_0x571055(0x242),_0x571055(0x237));for(let _0x2661d7=0x0;_0x2661d7<_0x35683b;_0x2661d7++){const _0x48a7d1=_0x4a948f[_0x2661d7];let _0x483c7b=![];if(_0x17f855[_0x571055(0x25c)]===_0x571055(0x1fe)&&window[_0x571055(0x222)]&&window[_0x571055(0x222)][_0x571055(0x220)])try{const _0x19bb6e=_0x48a7d1[_0x571055(0x25b)]||_0x48a7d1[_0x571055(0x208)],_0x135db7=window['angular'][_0x571055(0x220)](_0x19bb6e),_0x1957dd=_0x135db7&&_0x135db7[_0x571055(0x25d)]&&_0x135db7[_0x571055(0x25d)]()||null;if(_0x1957dd&&typeof _0x1957dd[_0x571055(0x255)]===_0x571055(0x211))_0x1957dd['$apply']?_0x1957dd['$apply'](()=>_0x1957dd[_0x571055(0x255)](_0x48a7d1['id'])):_0x1957dd['openCase'](_0x48a7d1['id']),_0x483c7b=!![];else{const _0x1a0b95=_0x135db7&&_0x135db7['isolateScope']&&_0x135db7[_0x571055(0x24b)]()||null;if(_0x1a0b95&&typeof _0x1a0b95[_0x571055(0x255)]==='function')_0x1a0b95[_0x571055(0x250)]?_0x1a0b95[_0x571055(0x250)](()=>_0x1a0b95[_0x571055(0x255)](_0x48a7d1['id'])):_0x1a0b95[_0x571055(0x255)](_0x48a7d1['id']),_0x483c7b=!![];else{const _0x364b3d=_0x135db7&&_0x135db7[_0x571055(0x235)]&&_0x135db7[_0x571055(0x235)]()||null;_0x364b3d&&typeof _0x364b3d[_0x571055(0x255)]==='function'&&(_0x364b3d[_0x571055(0x255)](_0x48a7d1['id']),_0x483c7b=!![]);}}if(!_0x483c7b){const _0x1256ef=window[_0x571055(0x222)][_0x571055(0x220)](document['body'])[_0x571055(0x1fb)]&&window[_0x571055(0x222)][_0x571055(0x220)](document[_0x571055(0x1ff)])['injector']();if(_0x1256ef){const _0x1bb757=_0x1256ef['get']&&_0x1256ef['get'](_0x571055(0x218));_0x1bb757&&typeof _0x1bb757['openCase']==='function'&&(_0x1bb757[_0x571055(0x250)]?_0x1bb757[_0x571055(0x250)](()=>_0x1bb757['openCase'](_0x48a7d1['id'])):_0x1bb757[_0x571055(0x255)](_0x48a7d1['id']),_0x483c7b=!![]);}}}catch(_0xd78efa){_0xf8c70d(_0x571055(0x200),_0xd78efa);}if(!_0x483c7b&&_0x48a7d1[_0x571055(0x25b)])try{window['jQuery']&&window['jQuery']['fn']&&window[_0x571055(0x207)]['fn']['triggerHandler']&&(window[_0x571055(0x207)](_0x48a7d1[_0x571055(0x25b)])[_0x571055(0x245)]('click'),_0x483c7b=!![]),!_0x483c7b&&(_0x190c7a(_0x48a7d1['caseLink']),_0x483c7b=!![]);}catch(_0x34e507){}if(!_0x483c7b){const _0x192fa3=_0x48a7d1[_0x571055(0x208)][_0x571055(0x23f)]('a');_0x192fa3&&(_0x190c7a(_0x192fa3),_0x483c7b=!![]);}_0x483c7b?(_0x2d8aa0++,_0x199c3b++,_0x3fe307(_0x571055(0x232)+(_0x48a7d1['id']||_0x571055(0x22a))+'\x20procesado\x20('+(_0x2661d7+0x1)+'/'+_0x35683b+')','success')):(_0x97a2bf++,_0x2f4c20++,_0x3fe307(_0x571055(0x257)+(_0x48a7d1['id']||_0x571055(0x22a))+_0x571055(0x256),_0x571055(0x269))),_0x43774e(),await _0x4b6491(_0x17f855[_0x571055(0x247)]);}_0x97a2bf>0x0?_0x3fe307('⚠\x20ATENCIÓN:\x20'+_0x97a2bf+'\x20casos\x20no\x20se\x20abrieron',_0x571055(0x237)):_0x3fe307('✔\x20Todos\x20los\x20casos\x20procesados\x20exitosamente','success'),_0x3fe307('┗━━\x20Escaneo\x20#'+_0x12ef91+_0x571055(0x21d),_0x571055(0x24c)),_0x25e6a6(_0x571055(0x24f),_0x571055(0x230));}catch(_0x5e90e4){_0x3fe307('ERROR:\x20'+_0x5e90e4[_0x571055(0x20a)],'error'),_0x25e6a6(_0x571055(0x270),'error'),console[_0x571055(0x269)](_0x571055(0x25a),_0x5e90e4);}finally{_0x5ea6b9=![];}}(async function _0x1f5f1c(){const _0x210ba2=_0x1f90ae;_0x146fa5(),_0x3fe307(_0x210ba2(0x233),_0x210ba2(0x24d)),_0x4104c1(),await _0x4b6491(0x3e8),await _0x12d91c(),setInterval(()=>{!window['monitorPaused']&&_0x12d91c();},_0x17f855[_0x210ba2(0x1f6)]),_0xf8c70d('Sistema\x20de\x20monitoreo\x20activo');}());}catch(_0x207951){console[_0x1f90ae(0x269)]('[abrir-todos][injected]\x20error:',_0x207951);}}());};try{const _0x24223a=document[_0x4f7ba6(0x231)](_0x4f7ba6(0x216));_0x24223a[_0x4f7ba6(0x23b)](_0x4f7ba6(0x223),'text/javascript'),_0x24223a[_0x4f7ba6(0x221)]='('+_0x1bfe28[_0x4f7ba6(0x25e)]()+_0x4f7ba6(0x1fd),(document[_0x4f7ba6(0x24a)]||document[_0x4f7ba6(0x21b)])[_0x4f7ba6(0x238)](_0x24223a),_0x24223a[_0x4f7ba6(0x25f)]&&_0x24223a[_0x4f7ba6(0x25f)][_0x4f7ba6(0x209)](_0x24223a),console[_0x4f7ba6(0x26b)]('[abrir-todos]\x20Script\x20con\x20monitor\x20visual\x20inyectado');}catch(_0x23f652){console['error'](_0x4f7ba6(0x203),_0x23f652);}}()));function _0xdb6e(){const _0x1fe5ed=['#60a5fa','waitTimeoutMs','getElementById','N/A','189EqAnix','2px','floor','registrados-monitor-log','998oRevaQ','active','createElement','✔\x20Caso\x20','Monitor\x20iniciado','⏸\x20Monitor\x20pausado','controller','5860435SFrGmG','warning','appendChild','match','✔\x20No\x20hay\x20registros\x20\x22Registrado\x22','setAttribute','7153680JfSfCV','padStart','⚠\x20Limitando\x20a\x20','querySelector','button-follow-list-','registrados-monitor-toggle','\x20casos','querySelectorAll','button[id^=\x22button-follow-list-\x22],\x20button[data-case-id],\x20[data-case-id]','triggerHandler','replace','delayMs','addEventListener','\x20casos\x20\x22Registrado\x22','head','isolateScope','info','success','2115910mNqWgy','Activo','$apply','div','registrados-monitor-scans','color','background','openCase','\x20falló','✗\x20Caso\x20','715yEKgjG','#e5e7eb','[abrir-todos]\x20Error:','caseLink','mode','scope','toString','parentNode','abrir-todos-monitor-panel','🔄\x20Escaneo\x20manual\x20iniciado...','registrados-monitor-failed','style','click','length','getAttribute','none','rgba(255,255,255,0.2)','error','normal','log','registrados-monitor-scan-now','registrados-monitor-container','min','a[href*=\x22Cases.aspx\x22],\x20a[href*=\x22Case\x22]','Error','block','#f87171','54396atRPsf','ng-click','registrados-monitor-status','[abrir-todos]\x20auto-scan\x20con\x20UI\x20arrancando','innerHTML','autoScanIntervalMs','#fbbf24','7362zKcLjJ','push','monitorPaused','injector','scrollHeight',')();','invoke','body','Error\x20invoke:','mousedown','2050lHklwI','[abrir-todos]\x20Error\x20al\x20inyectar:','121kQroar','flex','forEach','jQuery','row','removeChild','message','dispatchEvent','registrados-monitor-countdown','mouseup','rgba(255,200,0,0.4)','Monitor\x20pausado\x20-\x20Saltando\x20escaneo','8867898mHlzmW','function','registrados-monitor-success','a.expiration__link','⚠\x20Ya\x20hay\x20un\x20escaneo\x20en\x20proceso','[abrir-todos][injected]\x20iniciado\x20con\x20monitor\x20visual','script','Escaneando...','$rootScope','▶\x20Monitor\x20reanudado','⏸\x20Pausar','documentElement','test','\x20completado\x20━━┛','now','▶\x20Reanudar','element','textContent','angular','type','registrados-monitor-arrow','display','Pausado'];_0xdb6e=function(){return _0x1fe5ed;};return _0xdb6e();}
+// @name         Abrir todos Registrado - Monitor Visual - abajo (Independiente) - FINAL-v2
+// @namespace    https://example.local/
+// @version      2.5
+// @description  Escanea automáticamente cada 25 segundos con interfaz visual de monitoreo (inicia minimizado como flecha)
+// @match        https://aranda.positiva.gov.co/ASDKV8/Main/Pages/Cases.aspx*
+// @run-at       document-idle
+// @grant        none
+// ==/UserScript==
+
+(function(){
+  'use strict';
+  console.log('[abrir-todos] auto-scan con UI arrancando');
+
+  const injectedCode = function(){
+    (function(){
+      try {
+        console.log('[abrir-todos][injected] iniciado con monitor visual');
+
+        const CONFIG = {
+          mode: 'invoke',
+          maxToOpen: 20,
+          delayMs: 600,
+          waitTimeoutMs: 5000,
+          pollIntervalMs: 300,
+          autoScanIntervalMs: 25000
+        };
+
+        let isProcessing = false;
+        let scanCount = 0;
+        let totalProcessed = 0;
+        let totalFailed = 0;
+        let isRegistradosMinimized = true; // Inicia minimizado (solo la flecha)
+
+        function log(...a){ console.log('[abrir-todos][injected]', ...a); }
+        function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
+
+        function dispatchMouseSequence(el){
+          try {
+            ['pointerdown','mousedown','mouseup','click'].forEach(type=>{
+              el.dispatchEvent(new MouseEvent(type, {bubbles:true,cancelable:true,view:window}));
+            });
+            return true;
+          } catch(e){ return false; }
+        }
+
+        // ==========================================
+        // UI MODIFICADA (Solo Diseño)
+        // ==========================================
+        function createMonitorUI(){
+          const panel = document.createElement('div');
+          panel.id = 'abrir-todos-monitor-panel'; // ID único
+          panel.innerHTML = `
+           <!-- FLECHA MINIMIZADA SIN FONDO EN EL CENTRO ABAJO -->
+        <div id="registrados-monitor-arrow" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999999;
+            background: transparent;
+            color: #667eea; /* Color de la flecha */
+            padding: 10px 30px; /* Área donde puedes hacer clic */
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+        <span style="font-size: 24px; font-weight: bold; line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.5);">▲</span>
+            </div>
+
+            <!-- PANEL COMPLETO -->
+            <div id="registrados-monitor-container" style="position: fixed; bottom: 0px; left: 50%; z-index: 999999;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white; padding: 15px 20px; border-radius: 12px;
+                        box-shadow: 0 8px 32px rgba(0,0,0,0.3); font-family: 'Segoe UI', Arial, sans-serif;
+                        min-width: 220px; backdrop-filter: blur(10px); display: none;">
+
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="margin: 0; font-size: 16px; font-weight: 600;">📋 Monitor Registrados</h3>
+                <button id="registrados-monitor-toggle" style="background: rgba(255,255,255,0.2); border: none;
+                        color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer;
+                        font-size: 12px; font-weight: 500;">▶ Ocultar</button>
+              </div>
+
+              <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                  <span style="font-size: 12px; opacity: 0.9;">Estado:</span>
+                  <span id="registrados-monitor-status" style="font-size: 12px; font-weight: 600;">🟢 Activo</span>
+                </div>
+              </div>
+
+              <div id="registrados-monitor-content">
+                <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="font-size: 12px; opacity: 0.9;">Escaneos:</span>
+                    <span id="registrados-monitor-scans" style="font-size: 12px; font-weight: 600;">0</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="font-size: 12px; opacity: 0.9;">Próximo en:</span>
+                    <span id="registrados-monitor-countdown" style="font-size: 12px; font-weight: 600;">--</span>
+                  </div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="font-size: 12px; opacity: 0.9;">✅ Procesados:</span>
+                    <span id="registrados-monitor-success" style="font-size: 12px; font-weight: 600; color: #4ade80;">0</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="font-size: 12px; opacity: 0.9;">❌ Fallidos:</span>
+                    <span id="registrados-monitor-failed" style="font-size: 12px; font-weight: 600; color: #f87171;">0</span>
+                  </div>
+                </div>
+
+                <div id="registrados-monitor-log" style="background: rgba(0,0,0,0.3); padding: 8px; border-radius: 6px;
+                                             font-size: 11px; max-height: 50px; overflow-y: auto;
+                                             font-family: 'Courier New', monospace; line-height: 1.4;">
+                  <div style="opacity: 0.7;">Esperando primer escaneo...</div>
+                </div>
+
+                <div style="margin-top: 10px; display: flex; gap: 8px;">
+                  <button id="registrados-monitor-pause" style="flex: 1; background: rgba(255,255,255,0.2); border: none;
+                          color: white; padding: 8px; border-radius: 6px; cursor: pointer; font-size: 12px;
+                          font-weight: 600; transition: all 0.2s;">⏸ Pausar</button>
+                  <button id="registrados-monitor-scan-now" style="flex: 1; background: rgba(255,255,255,0.3); border: none;
+                          color: white; padding: 8px; border-radius: 6px; cursor: pointer; font-size: 12px;
+                          font-weight: 600; transition: all 0.2s;">▶ Escanear Ahora</button>
+                </div>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(panel);
+
+          const arrowBtn = document.getElementById('registrados-monitor-arrow');
+          const toggleBtn = document.getElementById('registrados-monitor-toggle');
+          const container = document.getElementById('registrados-monitor-container');
+
+          function updateToggleState() {
+            if (isRegistradosMinimized) {
+              container.style.display = 'none';
+              arrowBtn.style.display = 'flex';
+            } else {
+              container.style.display = 'block';
+              arrowBtn.style.display = 'none';
+            }
+          }
+
+          updateToggleState();
+
+          // Evento para abrir el panel (clic en flecha)
+          arrowBtn.addEventListener('click', () => {
+            isRegistradosMinimized = false;
+            updateToggleState();
+          });
+
+          // Evento para ocultar el panel (clic en ocultar)
+          toggleBtn.addEventListener('click', () => {
+            isRegistradosMinimized = true;
+            updateToggleState();
+          });
+
+          let isPaused = false;
+          const pauseBtn = document.getElementById('registrados-monitor-pause');
+          pauseBtn.addEventListener('click', () => {
+            isPaused = !isPaused;
+            pauseBtn.textContent = isPaused ? '▶ Reanudar' : '⏸ Pausar';
+            pauseBtn.style.background = isPaused ? 'rgba(255,200,0,0.4)' : 'rgba(255,255,255,0.2)';
+            window.monitorPaused = isPaused;
+            addLog(isPaused ? '⏸ Monitor pausado' : '▶ Monitor reanudado', 'warning');
+          });
+
+          document.getElementById('registrados-monitor-scan-now').addEventListener('click', () => {
+            if (!isProcessing) {
+              addLog('🔄 Escaneo manual iniciado...', 'info');
+              processTargets();
+            } else {
+              addLog('⚠ Ya hay un escaneo en proceso', 'warning');
+            }
+          });
+
+          return panel;
+        }
+        // ==========================================
+
+        function updateStatus(text, type = 'normal'){
+          const el = document.getElementById('registrados-monitor-status');
+          if (el) {
+            const icons = {
+              active: '🟢',
+              processing: '🔄',
+              paused: '⏸',
+              error: '🔴'
+            };
+            el.textContent = `${icons[type] || '🟢'} ${text}`;
+          }
+        }
+
+        function updateScans(count){
+          const el = document.getElementById('registrados-monitor-scans');
+          if (el) el.textContent = count;
+        }
+
+        function updateStats(){
+          const success = document.getElementById('registrados-monitor-success');
+          const failed = document.getElementById('registrados-monitor-failed');
+          if (success) success.textContent = totalProcessed;
+          if (failed) failed.textContent = totalFailed;
+        }
+
+        function addLog(message, type = 'normal'){
+          const logEl = document.getElementById('registrados-monitor-log');
+          if (!logEl) return;
+
+          const time = new Date().toLocaleTimeString();
+          const colors = {
+            success: '#4ade80',
+            error: '#f87171',
+            warning: '#fbbf24',
+            info: '#60a5fa',
+            normal: '#e5e7eb'
+          };
+
+          const entry = document.createElement('div');
+          entry.style.color = colors[type] || colors.normal;
+          entry.style.marginBottom = '2px';
+          entry.textContent = `[${time}] ${message}`;
+
+          logEl.appendChild(entry);
+          logEl.scrollTop = logEl.scrollHeight;
+
+          while (logEl.children.length > 50) {
+            logEl.removeChild(logEl.firstChild);
+          }
+        }
+
+        function startCountdown(){
+          let remaining = CONFIG.autoScanIntervalMs / 1000;
+          const countdownEl = document.getElementById('registrados-monitor-countdown');
+
+          setInterval(() => {
+            if (window.monitorPaused) {
+              if (countdownEl) countdownEl.textContent = 'Pausado';
+              return;
+            }
+
+            remaining--;
+            if (remaining <= 0) remaining = CONFIG.autoScanIntervalMs / 1000;
+
+            const mins = Math.floor(remaining / 60);
+            const secs = remaining % 60;
+            if (countdownEl) countdownEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+          }, 1000);
+        }
+
+        function findTargets(){
+          const rows = Array.from(document.querySelectorAll('table.k-selectable tr, table tr, tr'));
+          const targets = [];
+          rows.forEach(row => {
+            const text = (row.textContent||'').trim();
+            if (!/Registrado/i.test(text)) return;
+            const caseLink = row.querySelector('a.expiration__link') || row.querySelector('a[href*="Cases.aspx"], a[href*="Case"]');
+            let id = null;
+            if (caseLink) {
+              const ng = caseLink.getAttribute && caseLink.getAttribute('ng-click');
+              const m = ng && ng.match(/openCase\(\s*(\d+)\s*\)/);
+              if (m) id = Number(m[1]);
+              if (!id) {
+                const mm = (caseLink.textContent||'').match(/\b(\d{4,})\b/);
+                if (mm) id = Number(mm[1]);
+              }
+            }
+            if (!id) {
+              const btn = row.querySelector('button[id^="button-follow-list-"], button[data-case-id], [data-case-id]');
+              if (btn) {
+                const bid = btn.id ? btn.id.replace('button-follow-list-','') : (btn.getAttribute('data-case-id') || '');
+                if (/^\d+$/.test(bid)) id = Number(bid);
+              }
+            }
+            if (!id) {
+              const mm = text.match(/\b(\d{4,})\b/);
+              if (mm) id = Number(mm[1]);
+            }
+            targets.push({ row, caseLink: caseLink || null, id: id || null, rowText: text });
+          });
+          return targets.filter(t => t.id || t.caseLink);
+        }
+
+        async function waitForTargets(timeoutMs, intervalMs){
+          const start = Date.now();
+          while (Date.now() - start < timeoutMs) {
+            const targets = findTargets();
+            if (targets.length) return targets;
+            await sleep(intervalMs);
+          }
+          return [];
+        }
+
+        async function processTargets(){
+          if (isProcessing) {
+            addLog('Ya hay un proceso activo', 'warning');
+            return;
+          }
+          if (window.monitorPaused) {
+            addLog('Monitor pausado - Saltando escaneo', 'warning');
+            return;
+          }
+
+          isProcessing = true;
+          scanCount++;
+          updateScans(scanCount);
+          updateStatus('Escaneando...', 'processing');
+
+          let localSuccess = 0;
+          let localFailed = 0;
+
+          try {
+            addLog(`┏━━ Escaneo #${scanCount} iniciado ━━┓`, 'info');
+
+            const targets = await waitForTargets(CONFIG.waitTimeoutMs, CONFIG.pollIntervalMs);
+
+            if (!targets.length) {
+              addLog('✔ No hay registros "Registrado"', 'success');
+              updateStatus('Activo', 'active');
+              return;
+            }
+
+            addLog(`Encontrados ${targets.length} casos "Registrado"`, 'info');
+            const toProcess = Math.min(CONFIG.maxToOpen, targets.length);
+
+            if (targets.length > CONFIG.maxToOpen) {
+              addLog(`⚠ Limitando a ${CONFIG.maxToOpen} casos`, 'warning');
+            }
+
+            for (let i = 0; i < toProcess; i++){
+              const t = targets[i];
+              let handled = false;
+
+              if (CONFIG.mode === 'invoke' && window.angular && window.angular.element) {
+                try {
+                  const elForScope = t.caseLink || t.row;
+                  const aEl = window.angular.element(elForScope);
+
+                  const sc = (aEl && aEl.scope && aEl.scope()) || null;
+                  if (sc && typeof sc.openCase === 'function') {
+                    sc.$apply ? sc.$apply(() => sc.openCase(t.id)) : sc.openCase(t.id);
+                    handled = true;
+                  } else {
+                    const iso = (aEl && aEl.isolateScope && aEl.isolateScope()) || null;
+                    if (iso && typeof iso.openCase === 'function') {
+                      iso.$apply ? iso.$apply(() => iso.openCase(t.id)) : iso.openCase(t.id);
+                      handled = true;
+                    } else {
+                      const ctrl = (aEl && aEl.controller && aEl.controller()) || null;
+                      if (ctrl && typeof ctrl.openCase === 'function') {
+                        ctrl.openCase(t.id);
+                        handled = true;
+                      }
+                    }
+                  }
+
+                  if (!handled) {
+                    const injector = window.angular.element(document.body).injector && window.angular.element(document.body).injector();
+                    if (injector) {
+                      const $rootScope = injector.get && injector.get('$rootScope');
+                      if ($rootScope && typeof $rootScope.openCase === 'function') {
+                        $rootScope.$apply ? $rootScope.$apply(()=> $rootScope.openCase(t.id)) : $rootScope.openCase(t.id);
+                        handled = true;
+                      }
+                    }
+                  }
+                } catch(err){
+                  log('Error invoke:', err);
+                }
+              }
+
+              if (!handled && t.caseLink) {
+                try {
+                  if (window.jQuery && window.jQuery.fn && window.jQuery.fn.triggerHandler) {
+                    window.jQuery(t.caseLink).triggerHandler('click');
+                    handled = true;
+                  }
+                  if (!handled) {
+                    dispatchMouseSequence(t.caseLink);
+                    handled = true;
+                  }
+                } catch(e){}
+              }
+
+              if (!handled) {
+                const anyA = t.row.querySelector('a');
+                if (anyA) {
+                  dispatchMouseSequence(anyA);
+                  handled = true;
+                }
+              }
+
+              if (handled) {
+                localSuccess++;
+                totalProcessed++;
+                addLog(`✔ Caso ${t.id || 'N/A'} procesado (${i+1}/${toProcess})`, 'success');
+              } else {
+                localFailed++;
+                totalFailed++;
+                addLog(`✗ Caso ${t.id || 'N/A'} falló`, 'error');
+              }
+
+              updateStats();
+              await sleep(CONFIG.delayMs);
+            }
+
+            if (localFailed > 0) {
+              addLog(`⚠ ATENCIÓN: ${localFailed} casos no se abrieron`, 'warning');
+            } else {
+              addLog(`✔ Todos los casos procesados exitosamente`, 'success');
+            }
+
+            addLog(`┗━━ Escaneo #${scanCount} completado ━━┛`, 'info');
+            updateStatus('Activo', 'active');
+
+          } catch(e){
+            addLog(`ERROR: ${e.message}`, 'error');
+            updateStatus('Error', 'error');
+            console.error('[abrir-todos] Error:', e);
+          } finally {
+            isProcessing = false;
+          }
+        }
+
+        (async function init(){
+          createMonitorUI();
+          addLog('Monitor iniciado', 'success');
+          startCountdown();
+
+          await sleep(1000);
+          await processTargets();
+
+          setInterval(() => {
+            if (!window.monitorPaused) {
+              processTargets();
+            }
+          }, CONFIG.autoScanIntervalMs);
+
+          log('Sistema de monitoreo activo');
+        })();
+
+      } catch(e){
+        console.error('[abrir-todos][injected] error:', e);
+      }
+    })();
+  };
+
+  try {
+    const s = document.createElement('script');
+    s.setAttribute('type','text/javascript');
+    s.textContent = '(' + injectedCode.toString() + ')();';
+    (document.head || document.documentElement).appendChild(s);
+    s.parentNode && s.parentNode.removeChild(s);
+    console.log('[abrir-todos] Script con monitor visual inyectado');
+  } catch(e){
+    console.error('[abrir-todos] Error al inyectar:', e);
+  }
+})();
