@@ -1,1 +1,454 @@
-function _0x5a18(_0x2d4163,_0x5bfb7b){_0x2d4163=_0x2d4163-0x18b;const _0x18119d=_0x1811();let _0x5a18c0=_0x18119d[_0x2d4163];return _0x5a18c0;}(function(_0x32877e,_0x5ba951){const _0x493018=_0x5a18,_0x344786=_0x32877e();while(!![]){try{const _0x581050=parseInt(_0x493018(0x1da))/0x1*(parseInt(_0x493018(0x197))/0x2)+-parseInt(_0x493018(0x1bc))/0x3+-parseInt(_0x493018(0x1e4))/0x4*(-parseInt(_0x493018(0x18f))/0x5)+-parseInt(_0x493018(0x1c0))/0x6+-parseInt(_0x493018(0x190))/0x7+parseInt(_0x493018(0x1d2))/0x8*(-parseInt(_0x493018(0x1c4))/0x9)+parseInt(_0x493018(0x1cb))/0xa;if(_0x581050===_0x5ba951)break;else _0x344786['push'](_0x344786['shift']());}catch(_0x3027c5){_0x344786['push'](_0x344786['shift']());}}}(_0x1811,0x72623),(function(){'use strict';const _0x46006f=_0x5a18;console[_0x46006f(0x195)]('[abrir-todos]\x20auto-scan\x20con\x20UI\x20arrancando');const _0x3f5998=function(){(function(){const _0x211ceb=_0x5a18;try{console['log'](_0x211ceb(0x1e9));const _0x410ac5={'mode':_0x211ceb(0x196),'maxToOpen':0x14,'delayMs':0x258,'waitTimeoutMs':0x1388,'pollIntervalMs':0x12c,'autoScanIntervalMs':0x61a8};let _0x5951e3=![],_0x444882=0x0,_0x47e2b4=0x0,_0x3bc867=0x0,_0x41be1c=!![];function _0x4053a0(..._0x5641e7){const _0x5e9f53=_0x211ceb;console['log'](_0x5e9f53(0x20c),..._0x5641e7);}function _0x36c0bc(_0x3f58ed){return new Promise(_0x407200=>setTimeout(_0x407200,_0x3f58ed));}function _0x537bb4(_0x27a757){const _0x93d8ad=_0x211ceb;try{return[_0x93d8ad(0x216),_0x93d8ad(0x1dd),_0x93d8ad(0x1ba),_0x93d8ad(0x1f1)]['forEach'](_0x148021=>{const _0x28918e=_0x93d8ad;_0x27a757[_0x28918e(0x1bd)](new MouseEvent(_0x148021,{'bubbles':!![],'cancelable':!![],'view':window}));}),!![];}catch(_0x1d53dc){return![];}}function _0x3c5f6b(){const _0x45924e=_0x211ceb,_0x4262a5=document[_0x45924e(0x198)](_0x45924e(0x1ec));_0x4262a5['id']='abrir-todos-monitor-panel',_0x4262a5[_0x45924e(0x1c7)]=_0x45924e(0x1c6),document[_0x45924e(0x205)][_0x45924e(0x1e3)](_0x4262a5);const _0x1f98ef=document[_0x45924e(0x1e5)](_0x45924e(0x217)),_0x151072=document[_0x45924e(0x1e5)](_0x45924e(0x1d8)),_0x496838=document[_0x45924e(0x1e5)](_0x45924e(0x1d9));function _0x23d970(){const _0x115f45=_0x45924e;_0x41be1c?(_0x496838['style'][_0x115f45(0x1c8)]=_0x115f45(0x1ef),_0x1f98ef[_0x115f45(0x1f2)]['display']=_0x115f45(0x21c)):(_0x496838[_0x115f45(0x1f2)][_0x115f45(0x1c8)]=_0x115f45(0x1a3),_0x1f98ef[_0x115f45(0x1f2)][_0x115f45(0x1c8)]=_0x115f45(0x1ef));}_0x23d970(),_0x1f98ef['addEventListener']('click',()=>{_0x41be1c=![],_0x23d970();}),_0x151072['addEventListener'](_0x45924e(0x1f1),()=>{_0x41be1c=!![],_0x23d970();});let _0x39d38a=![];const _0x4f2d90=document[_0x45924e(0x1e5)](_0x45924e(0x1ab));return _0x4f2d90[_0x45924e(0x1f4)](_0x45924e(0x1f1),()=>{const _0x4ac32c=_0x45924e;_0x39d38a=!_0x39d38a,_0x4f2d90[_0x4ac32c(0x1ff)]=_0x39d38a?'▶\x20Reanudar':_0x4ac32c(0x1dc),_0x4f2d90[_0x4ac32c(0x1f2)]['background']=_0x39d38a?_0x4ac32c(0x212):_0x4ac32c(0x18d),window[_0x4ac32c(0x202)]=_0x39d38a,_0x255599(_0x39d38a?_0x4ac32c(0x1be):_0x4ac32c(0x1f8),_0x4ac32c(0x1b3));}),document['getElementById'](_0x45924e(0x1ed))[_0x45924e(0x1f4)]('click',()=>{const _0x4a5c1d=_0x45924e;!_0x5951e3?(_0x255599(_0x4a5c1d(0x209),'info'),_0x2f0f3b()):_0x255599(_0x4a5c1d(0x1e0),'warning');}),_0x4262a5;}function _0xb3c522(_0x225427,_0x2c2c30=_0x211ceb(0x1a2)){const _0x3909a1=_0x211ceb,_0x1f13d6=document[_0x3909a1(0x1e5)](_0x3909a1(0x1a8));if(_0x1f13d6){const _0x142ca8={'active':'🟢','processing':'🔄','paused':'⏸','error':'🔴'};_0x1f13d6[_0x3909a1(0x1ff)]=(_0x142ca8[_0x2c2c30]||'🟢')+'\x20'+_0x225427;}}function _0x2efccb(_0x394224){const _0x3ac00e=_0x211ceb,_0x10ad8f=document['getElementById'](_0x3ac00e(0x19c));if(_0x10ad8f)_0x10ad8f[_0x3ac00e(0x1ff)]=_0x394224;}function _0x5a3977(){const _0x1dd90e=_0x211ceb,_0x14006a=document[_0x1dd90e(0x1e5)](_0x1dd90e(0x215)),_0x28f194=document[_0x1dd90e(0x1e5)](_0x1dd90e(0x1e8));if(_0x14006a)_0x14006a['textContent']=_0x47e2b4;if(_0x28f194)_0x28f194[_0x1dd90e(0x1ff)]=_0x3bc867;}function _0x255599(_0x42237d,_0x1207b5=_0x211ceb(0x1a2)){const _0x3b0e22=_0x211ceb,_0x1a6991=document[_0x3b0e22(0x1e5)](_0x3b0e22(0x192));if(!_0x1a6991)return;const _0x181699=new Date()[_0x3b0e22(0x1cc)](),_0x47d9f1={'success':_0x3b0e22(0x1ee),'error':'#f87171','warning':_0x3b0e22(0x1d0),'info':'#60a5fa','normal':_0x3b0e22(0x1c9)},_0x35d931=document[_0x3b0e22(0x198)](_0x3b0e22(0x1ec));_0x35d931[_0x3b0e22(0x1f2)][_0x3b0e22(0x214)]=_0x47d9f1[_0x1207b5]||_0x47d9f1[_0x3b0e22(0x1a2)],_0x35d931[_0x3b0e22(0x1f2)][_0x3b0e22(0x1b0)]='2px',_0x35d931['textContent']='['+_0x181699+']\x20'+_0x42237d,_0x1a6991[_0x3b0e22(0x1e3)](_0x35d931),_0x1a6991[_0x3b0e22(0x1f0)]=_0x1a6991[_0x3b0e22(0x1df)];while(_0x1a6991[_0x3b0e22(0x1ce)][_0x3b0e22(0x1d7)]>0x32){_0x1a6991[_0x3b0e22(0x19e)](_0x1a6991[_0x3b0e22(0x201)]);}}function _0x2d1bc7(){const _0x3d656e=_0x211ceb;let _0x3c339b=_0x410ac5[_0x3d656e(0x1d3)]/0x3e8;const _0x555491=document[_0x3d656e(0x1e5)](_0x3d656e(0x1ad));setInterval(()=>{const _0x408dc5=_0x3d656e;if(window[_0x408dc5(0x202)]){if(_0x555491)_0x555491[_0x408dc5(0x1ff)]=_0x408dc5(0x1af);return;}_0x3c339b--;if(_0x3c339b<=0x0)_0x3c339b=_0x410ac5[_0x408dc5(0x1d3)]/0x3e8;const _0xd2ec7f=Math[_0x408dc5(0x1ac)](_0x3c339b/0x3c),_0x5f20cb=_0x3c339b%0x3c;if(_0x555491)_0x555491['textContent']=_0xd2ec7f+':'+_0x5f20cb[_0x408dc5(0x1f6)]()[_0x408dc5(0x1aa)](0x2,'0');},0x3e8);}function _0x4fe305(){const _0x156742=_0x211ceb,_0x484300=Array[_0x156742(0x18c)](document[_0x156742(0x1cd)](_0x156742(0x1e2))),_0x4bbe3e=[];return _0x484300[_0x156742(0x1b6)](_0x111c3b=>{const _0x31435a=_0x156742,_0x1ba667=(_0x111c3b[_0x31435a(0x1ff)]||'')[_0x31435a(0x1a5)]();if(!/Registrado/i['test'](_0x1ba667))return;const _0x52cc5a=_0x111c3b[_0x31435a(0x1de)](_0x31435a(0x206))||_0x111c3b[_0x31435a(0x1de)](_0x31435a(0x18b));let _0x36eccc=null;if(_0x52cc5a){const _0x5ba30c=_0x52cc5a[_0x31435a(0x1f9)]&&_0x52cc5a['getAttribute'](_0x31435a(0x1b7)),_0x5d0c53=_0x5ba30c&&_0x5ba30c[_0x31435a(0x18e)](/openCase\(\s*(\d+)\s*\)/);if(_0x5d0c53)_0x36eccc=Number(_0x5d0c53[0x1]);if(!_0x36eccc){const _0x993d60=(_0x52cc5a[_0x31435a(0x1ff)]||'')[_0x31435a(0x18e)](/\b(\d{4,})\b/);if(_0x993d60)_0x36eccc=Number(_0x993d60[0x1]);}}if(!_0x36eccc){const _0x35543c=_0x111c3b['querySelector'](_0x31435a(0x191));if(_0x35543c){const _0x2acbd4=_0x35543c['id']?_0x35543c['id'][_0x31435a(0x1c2)](_0x31435a(0x1f7),''):_0x35543c[_0x31435a(0x1f9)](_0x31435a(0x1a1))||'';if(/^\d+$/['test'](_0x2acbd4))_0x36eccc=Number(_0x2acbd4);}}if(!_0x36eccc){const _0x136dc9=_0x1ba667[_0x31435a(0x18e)](/\b(\d{4,})\b/);if(_0x136dc9)_0x36eccc=Number(_0x136dc9[0x1]);}_0x4bbe3e[_0x31435a(0x1ca)]({'row':_0x111c3b,'caseLink':_0x52cc5a||null,'id':_0x36eccc||null,'rowText':_0x1ba667});}),_0x4bbe3e[_0x156742(0x1b9)](_0x247859=>_0x247859['id']||_0x247859[_0x156742(0x1d5)]);}async function _0x2ca8cf(_0x37bec7,_0x21ed3c){const _0x51f760=_0x211ceb,_0x32214e=Date[_0x51f760(0x21a)]();while(Date['now']()-_0x32214e<_0x37bec7){const _0x4c3328=_0x4fe305();if(_0x4c3328[_0x51f760(0x1d7)])return _0x4c3328;await _0x36c0bc(_0x21ed3c);}return[];}async function _0x2f0f3b(){const _0x550739=_0x211ceb;if(_0x5951e3){_0x255599(_0x550739(0x1eb),_0x550739(0x1b3));return;}if(window[_0x550739(0x202)]){_0x255599(_0x550739(0x1fa),_0x550739(0x1b3));return;}_0x5951e3=!![],_0x444882++,_0x2efccb(_0x444882),_0xb3c522(_0x550739(0x1a0),'processing');let _0x5d3853=0x0,_0x5951d0=0x0;try{_0x255599(_0x550739(0x210)+_0x444882+'\x20iniciado\x20━━┓',_0x550739(0x19d));const _0x30967d=await _0x2ca8cf(_0x410ac5[_0x550739(0x1f3)],_0x410ac5[_0x550739(0x21b)]);if(!_0x30967d['length']){_0x255599(_0x550739(0x1ae),'success'),_0xb3c522(_0x550739(0x19a),'active');return;}_0x255599('Encontrados\x20'+_0x30967d[_0x550739(0x1d7)]+_0x550739(0x1e7),_0x550739(0x19d));const _0x3850e2=Math[_0x550739(0x1a7)](_0x410ac5[_0x550739(0x203)],_0x30967d[_0x550739(0x1d7)]);_0x30967d[_0x550739(0x1d7)]>_0x410ac5['maxToOpen']&&_0x255599('⚠\x20Limitando\x20a\x20'+_0x410ac5['maxToOpen']+'\x20casos',_0x550739(0x1b3));for(let _0x334451=0x0;_0x334451<_0x3850e2;_0x334451++){const _0x15760a=_0x30967d[_0x334451];let _0x54ee1d=![];if(_0x410ac5['mode']===_0x550739(0x196)&&window[_0x550739(0x194)]&&window[_0x550739(0x194)]['element'])try{const _0x4bba97=_0x15760a[_0x550739(0x1d5)]||_0x15760a[_0x550739(0x1e6)],_0x4b13c6=window[_0x550739(0x194)][_0x550739(0x1d6)](_0x4bba97),_0x6a051=_0x4b13c6&&_0x4b13c6[_0x550739(0x193)]&&_0x4b13c6[_0x550739(0x193)]()||null;if(_0x6a051&&typeof _0x6a051[_0x550739(0x1b2)]===_0x550739(0x204))_0x6a051[_0x550739(0x1fd)]?_0x6a051['$apply'](()=>_0x6a051[_0x550739(0x1b2)](_0x15760a['id'])):_0x6a051[_0x550739(0x1b2)](_0x15760a['id']),_0x54ee1d=!![];else{const _0x50f01f=_0x4b13c6&&_0x4b13c6[_0x550739(0x20f)]&&_0x4b13c6[_0x550739(0x20f)]()||null;if(_0x50f01f&&typeof _0x50f01f[_0x550739(0x1b2)]==='function')_0x50f01f[_0x550739(0x1fd)]?_0x50f01f['$apply'](()=>_0x50f01f[_0x550739(0x1b2)](_0x15760a['id'])):_0x50f01f[_0x550739(0x1b2)](_0x15760a['id']),_0x54ee1d=!![];else{const _0x5e8048=_0x4b13c6&&_0x4b13c6[_0x550739(0x1c5)]&&_0x4b13c6['controller']()||null;_0x5e8048&&typeof _0x5e8048['openCase']===_0x550739(0x204)&&(_0x5e8048[_0x550739(0x1b2)](_0x15760a['id']),_0x54ee1d=!![]);}}if(!_0x54ee1d){const _0xdab1ea=window[_0x550739(0x194)][_0x550739(0x1d6)](document[_0x550739(0x205)])[_0x550739(0x1cf)]&&window[_0x550739(0x194)][_0x550739(0x1d6)](document[_0x550739(0x205)])['injector']();if(_0xdab1ea){const _0xb0f5e6=_0xdab1ea['get']&&_0xdab1ea[_0x550739(0x1a6)](_0x550739(0x1e1));_0xb0f5e6&&typeof _0xb0f5e6[_0x550739(0x1b2)]==='function'&&(_0xb0f5e6[_0x550739(0x1fd)]?_0xb0f5e6[_0x550739(0x1fd)](()=>_0xb0f5e6[_0x550739(0x1b2)](_0x15760a['id'])):_0xb0f5e6[_0x550739(0x1b2)](_0x15760a['id']),_0x54ee1d=!![]);}}}catch(_0x5f0b8a){_0x4053a0(_0x550739(0x1db),_0x5f0b8a);}if(!_0x54ee1d&&_0x15760a[_0x550739(0x1d5)])try{window[_0x550739(0x1ea)]&&window[_0x550739(0x1ea)]['fn']&&window[_0x550739(0x1ea)]['fn'][_0x550739(0x1b5)]&&(window[_0x550739(0x1ea)](_0x15760a[_0x550739(0x1d5)])['triggerHandler'](_0x550739(0x1f1)),_0x54ee1d=!![]),!_0x54ee1d&&(_0x537bb4(_0x15760a[_0x550739(0x1d5)]),_0x54ee1d=!![]);}catch(_0x9a9804){}if(!_0x54ee1d){const _0x3ee818=_0x15760a['row']['querySelector']('a');_0x3ee818&&(_0x537bb4(_0x3ee818),_0x54ee1d=!![]);}_0x54ee1d?(_0x5d3853++,_0x47e2b4++,_0x255599(_0x550739(0x1d4)+(_0x15760a['id']||_0x550739(0x199))+_0x550739(0x1a9)+(_0x334451+0x1)+'/'+_0x3850e2+')',_0x550739(0x1c1))):(_0x5951d0++,_0x3bc867++,_0x255599(_0x550739(0x1bb)+(_0x15760a['id']||_0x550739(0x199))+_0x550739(0x1c3),_0x550739(0x20d))),_0x5a3977(),await _0x36c0bc(_0x410ac5[_0x550739(0x200)]);}_0x5951d0>0x0?_0x255599(_0x550739(0x1b4)+_0x5951d0+_0x550739(0x1a4),_0x550739(0x1b3)):_0x255599(_0x550739(0x20b),_0x550739(0x1c1)),_0x255599(_0x550739(0x1fe)+_0x444882+_0x550739(0x19f),_0x550739(0x19d)),_0xb3c522('Activo','active');}catch(_0x49971c){_0x255599(_0x550739(0x19b)+_0x49971c[_0x550739(0x1b8)],_0x550739(0x20d)),_0xb3c522(_0x550739(0x1d1),_0x550739(0x20d)),console[_0x550739(0x20d)](_0x550739(0x20a),_0x49971c);}finally{_0x5951e3=![];}}(async function _0x2d090f(){const _0x52ff04=_0x211ceb;_0x3c5f6b(),_0x255599(_0x52ff04(0x20e),_0x52ff04(0x1c1)),_0x2d1bc7(),await _0x36c0bc(0x3e8),await _0x2f0f3b(),setInterval(()=>{const _0x51781c=_0x52ff04;!window[_0x51781c(0x202)]&&_0x2f0f3b();},_0x410ac5[_0x52ff04(0x1d3)]),_0x4053a0('Sistema\x20de\x20monitoreo\x20activo');}());}catch(_0x2f6a25){console[_0x211ceb(0x20d)](_0x211ceb(0x1fb),_0x2f6a25);}}());};try{const _0x502ec5=document['createElement'](_0x46006f(0x218));_0x502ec5[_0x46006f(0x213)](_0x46006f(0x1b1),_0x46006f(0x219)),_0x502ec5[_0x46006f(0x1ff)]='('+_0x3f5998['toString']()+_0x46006f(0x1f5),(document[_0x46006f(0x1fc)]||document[_0x46006f(0x211)])['appendChild'](_0x502ec5),_0x502ec5[_0x46006f(0x208)]&&_0x502ec5[_0x46006f(0x208)][_0x46006f(0x19e)](_0x502ec5),console[_0x46006f(0x195)](_0x46006f(0x207));}catch(_0x240438){console['error'](_0x46006f(0x1bf),_0x240438);}}()));function _0x1811(){const _0x7d52fe=['addEventListener',')();','toString','button-follow-list-','▶\x20Monitor\x20reanudado','getAttribute','Monitor\x20pausado\x20-\x20Saltando\x20escaneo','[abrir-todos][injected]\x20error:','head','$apply','┗━━\x20Escaneo\x20#','textContent','delayMs','firstChild','monitorPaused','maxToOpen','function','body','a.expiration__link','[abrir-todos]\x20Script\x20con\x20monitor\x20visual\x20inyectado','parentNode','🔄\x20Escaneo\x20manual\x20iniciado...','[abrir-todos]\x20Error:','✔\x20Todos\x20los\x20casos\x20procesados\x20exitosamente','[abrir-todos][injected]','error','Monitor\x20iniciado','isolateScope','┏━━\x20Escaneo\x20#','documentElement','rgba(255,200,0,0.4)','setAttribute','color','registrados-monitor-success','pointerdown','registrados-monitor-arrow','script','text/javascript','now','pollIntervalMs','flex','a[href*=\x22Cases.aspx\x22],\x20a[href*=\x22Case\x22]','from','rgba(255,255,255,0.2)','match','25wbtwqN','2900233OraRmv','button[id^=\x22button-follow-list-\x22],\x20button[data-case-id],\x20[data-case-id]','registrados-monitor-log','scope','angular','log','invoke','455922JHfSLa','createElement','N/A','Activo','ERROR:\x20','registrados-monitor-scans','info','removeChild','\x20completado\x20━━┛','Escaneando...','data-case-id','normal','block','\x20casos\x20no\x20se\x20abrieron','trim','get','min','registrados-monitor-status','\x20procesado\x20(','padStart','registrados-monitor-pause','floor','registrados-monitor-countdown','✔\x20No\x20hay\x20registros\x20\x22Registrado\x22','Pausado','marginBottom','type','openCase','warning','⚠\x20ATENCIÓN:\x20','triggerHandler','forEach','ng-click','message','filter','mouseup','✗\x20Caso\x20','1733031OifUNz','dispatchEvent','⏸\x20Monitor\x20pausado','[abrir-todos]\x20Error\x20al\x20inyectar:','3834120aiilLV','success','replace','\x20falló','647883nSxcCq','controller','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20FLECHA\x20MINIMIZADA\x20SIN\x20FONDO\x20EN\x20EL\x20CENTRO\x20ABAJO\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22registrados-monitor-arrow\x22\x20style=\x22position:\x20fixed;\x20bottom:\x2020px;\x20left:\x2050%;\x20transform:\x20translateX(-50%);\x20z-index:\x20999999;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20transparent;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#667eea;\x20/*\x20Color\x20de\x20la\x20flecha\x20*/\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2010px\x2030px;\x20/*\x20Área\x20donde\x20puedes\x20hacer\x20clic\x20*/\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20flex;\x20align-items:\x20center;\x20justify-content:\x20center;\x20transition:\x20all\x200.2s;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2024px;\x20font-weight:\x20bold;\x20line-height:\x201;\x20text-shadow:\x200\x202px\x205px\x20rgba(0,0,0,0.5);\x22>▲</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20PANEL\x20COMPLETO\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22registrados-monitor-container\x22\x20style=\x22position:\x20fixed;\x20bottom:\x200px;\x20left:\x2050%;\x20z-index:\x20999999;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20linear-gradient(135deg,\x20#667eea\x200%,\x20#764ba2\x20100%);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20padding:\x2015px\x2020px;\x20border-radius:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x200\x208px\x2032px\x20rgba(0,0,0,0.3);\x20font-family:\x20\x27Segoe\x20UI\x27,\x20Arial,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20min-width:\x20220px;\x20backdrop-filter:\x20blur(10px);\x20display:\x20none;\x22>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x20align-items:\x20center;\x20margin-bottom:\x2012px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20style=\x22margin:\x200;\x20font-size:\x2016px;\x20font-weight:\x20600;\x22>📋\x20Monitor\x20Registrados</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22registrados-monitor-toggle\x22\x20style=\x22background:\x20rgba(255,255,255,0.2);\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20padding:\x205px\x2010px;\x20border-radius:\x205px;\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2012px;\x20font-weight:\x20500;\x22>▶\x20Ocultar</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20rgba(255,255,255,0.15);\x20padding:\x2010px;\x20border-radius:\x208px;\x20margin-bottom:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x20margin-bottom:\x205px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2012px;\x20opacity:\x200.9;\x22>Estado:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22registrados-monitor-status\x22\x20style=\x22font-size:\x2012px;\x20font-weight:\x20600;\x22>🟢\x20Activo</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22registrados-monitor-content\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20rgba(255,255,255,0.15);\x20padding:\x2010px;\x20border-radius:\x208px;\x20margin-bottom:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x20margin-bottom:\x205px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2012px;\x20opacity:\x200.9;\x22>Escaneos:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22registrados-monitor-scans\x22\x20style=\x22font-size:\x2012px;\x20font-weight:\x20600;\x22>0</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2012px;\x20opacity:\x200.9;\x22>Próximo\x20en:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22registrados-monitor-countdown\x22\x20style=\x22font-size:\x2012px;\x20font-weight:\x20600;\x22>--</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20rgba(255,255,255,0.15);\x20padding:\x2010px;\x20border-radius:\x208px;\x20margin-bottom:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x20margin-bottom:\x205px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2012px;\x20opacity:\x200.9;\x22>✅\x20Procesados:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22registrados-monitor-success\x22\x20style=\x22font-size:\x2012px;\x20font-weight:\x20600;\x20color:\x20#4ade80;\x22>0</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2012px;\x20opacity:\x200.9;\x22>❌\x20Fallidos:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22registrados-monitor-failed\x22\x20style=\x22font-size:\x2012px;\x20font-weight:\x20600;\x20color:\x20#f87171;\x22>0</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22registrados-monitor-log\x22\x20style=\x22background:\x20rgba(0,0,0,0.3);\x20padding:\x208px;\x20border-radius:\x206px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2011px;\x20max-height:\x2050px;\x20overflow-y:\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20\x27Courier\x20New\x27,\x20monospace;\x20line-height:\x201.4;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22opacity:\x200.7;\x22>Esperando\x20primer\x20escaneo...</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22margin-top:\x2010px;\x20display:\x20flex;\x20gap:\x208px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22registrados-monitor-pause\x22\x20style=\x22flex:\x201;\x20background:\x20rgba(255,255,255,0.2);\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20padding:\x208px;\x20border-radius:\x206px;\x20cursor:\x20pointer;\x20font-size:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20600;\x20transition:\x20all\x200.2s;\x22>⏸\x20Pausar</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22registrados-monitor-scan-now\x22\x20style=\x22flex:\x201;\x20background:\x20rgba(255,255,255,0.3);\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20padding:\x208px;\x20border-radius:\x206px;\x20cursor:\x20pointer;\x20font-size:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20600;\x20transition:\x20all\x200.2s;\x22>▶\x20Escanear\x20Ahora</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','innerHTML','display','#e5e7eb','push','21996780DihLIw','toLocaleTimeString','querySelectorAll','children','injector','#fbbf24','Error','72CdrRyS','autoScanIntervalMs','✔\x20Caso\x20','caseLink','element','length','registrados-monitor-toggle','registrados-monitor-container','1rhHnZc','Error\x20invoke:','⏸\x20Pausar','mousedown','querySelector','scrollHeight','⚠\x20Ya\x20hay\x20un\x20escaneo\x20en\x20proceso','$rootScope','table.k-selectable\x20tr,\x20table\x20tr,\x20tr','appendChild','255820pSPSvT','getElementById','row','\x20casos\x20\x22Registrado\x22','registrados-monitor-failed','[abrir-todos][injected]\x20iniciado\x20con\x20monitor\x20visual','jQuery','Ya\x20hay\x20un\x20proceso\x20activo','div','registrados-monitor-scan-now','#4ade80','none','scrollTop','click','style','waitTimeoutMs'];_0x1811=function(){return _0x7d52fe;};return _0x1811();}
+// @name         Abrir todos Registrado - Monitor Visual - abajo (Independiente) - FINAL-v2
+// @namespace    https://example.local/
+// @version      2.5
+// @description  Escanea automáticamente cada 25 segundos con interfaz visual de monitoreo (inicia minimizado como flecha)
+// @match        https://aranda.positiva.gov.co/ASDKV8/Main/Pages/Cases.aspx*
+// @run-at       document-idle
+// @grant        none
+// ==/UserScript==
+
+(function(){
+  'use strict';
+  console.log('[abrir-todos] auto-scan con UI arrancando');
+
+  const injectedCode = function(){
+    (function(){
+      try {
+        console.log('[abrir-todos][injected] iniciado con monitor visual');
+
+        const CONFIG = {
+          mode: 'invoke',
+          maxToOpen: 20,
+          delayMs: 600,
+          waitTimeoutMs: 5000,
+          pollIntervalMs: 300,
+          autoScanIntervalMs: 25000
+        };
+
+        let isProcessing = false;
+        let scanCount = 0;
+        let totalProcessed = 0;
+        let totalFailed = 0;
+        let isRegistradosMinimized = true; // Inicia minimizado (solo la flecha)
+
+        function log(...a){ console.log('[abrir-todos][injected]', ...a); }
+        function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
+
+        function dispatchMouseSequence(el){
+          try {
+            ['pointerdown','mousedown','mouseup','click'].forEach(type=>{
+              el.dispatchEvent(new MouseEvent(type, {bubbles:true,cancelable:true,view:window}));
+            });
+            return true;
+          } catch(e){ return false; }
+        }
+
+        // ==========================================
+        // UI MODIFICADA (Solo Diseño)
+        // ==========================================
+        function createMonitorUI(){
+          const panel = document.createElement('div');
+          panel.id = 'abrir-todos-monitor-panel'; // ID único
+          panel.innerHTML = `
+           <!-- FLECHA MINIMIZADA SIN FONDO EN EL CENTRO ABAJO -->
+        <div id="registrados-monitor-arrow" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999999;
+            background: transparent;
+            color: #667eea; /* Color de la flecha */
+            padding: 10px 30px; /* Área donde puedes hacer clic */
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+        <span style="font-size: 24px; font-weight: bold; line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.5);">▲</span>
+            </div>
+
+            <!-- PANEL COMPLETO -->
+            <div id="registrados-monitor-container" style="position: fixed; bottom: 0px; left: 50%; z-index: 999999;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white; padding: 15px 20px; border-radius: 12px;
+                        box-shadow: 0 8px 32px rgba(0,0,0,0.3); font-family: 'Segoe UI', Arial, sans-serif;
+                        min-width: 220px; backdrop-filter: blur(10px); display: none;">
+
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="margin: 0; font-size: 16px; font-weight: 600;">📋 Monitor Registrados</h3>
+                <button id="registrados-monitor-toggle" style="background: rgba(255,255,255,0.2); border: none;
+                        color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer;
+                        font-size: 12px; font-weight: 500;">▶ Ocultar</button>
+              </div>
+
+              <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                  <span style="font-size: 12px; opacity: 0.9;">Estado:</span>
+                  <span id="registrados-monitor-status" style="font-size: 12px; font-weight: 600;">🟢 Activo</span>
+                </div>
+              </div>
+
+              <div id="registrados-monitor-content">
+                <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="font-size: 12px; opacity: 0.9;">Escaneos:</span>
+                    <span id="registrados-monitor-scans" style="font-size: 12px; font-weight: 600;">0</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="font-size: 12px; opacity: 0.9;">Próximo en:</span>
+                    <span id="registrados-monitor-countdown" style="font-size: 12px; font-weight: 600;">--</span>
+                  </div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="font-size: 12px; opacity: 0.9;">✅ Procesados:</span>
+                    <span id="registrados-monitor-success" style="font-size: 12px; font-weight: 600; color: #4ade80;">0</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="font-size: 12px; opacity: 0.9;">❌ Fallidos:</span>
+                    <span id="registrados-monitor-failed" style="font-size: 12px; font-weight: 600; color: #f87171;">0</span>
+                  </div>
+                </div>
+
+                <div id="registrados-monitor-log" style="background: rgba(0,0,0,0.3); padding: 8px; border-radius: 6px;
+                                             font-size: 11px; max-height: 50px; overflow-y: auto;
+                                             font-family: 'Courier New', monospace; line-height: 1.4;">
+                  <div style="opacity: 0.7;">Esperando primer escaneo...</div>
+                </div>
+
+                <div style="margin-top: 10px; display: flex; gap: 8px;">
+                  <button id="registrados-monitor-pause" style="flex: 1; background: rgba(255,255,255,0.2); border: none;
+                          color: white; padding: 8px; border-radius: 6px; cursor: pointer; font-size: 12px;
+                          font-weight: 600; transition: all 0.2s;">⏸ Pausar</button>
+                  <button id="registrados-monitor-scan-now" style="flex: 1; background: rgba(255,255,255,0.3); border: none;
+                          color: white; padding: 8px; border-radius: 6px; cursor: pointer; font-size: 12px;
+                          font-weight: 600; transition: all 0.2s;">▶ Escanear Ahora</button>
+                </div>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(panel);
+
+          const arrowBtn = document.getElementById('registrados-monitor-arrow');
+          const toggleBtn = document.getElementById('registrados-monitor-toggle');
+          const container = document.getElementById('registrados-monitor-container');
+
+          function updateToggleState() {
+            if (isRegistradosMinimized) {
+              container.style.display = 'none';
+              arrowBtn.style.display = 'flex';
+            } else {
+              container.style.display = 'block';
+              arrowBtn.style.display = 'none';
+            }
+          }
+
+          updateToggleState();
+
+          // Evento para abrir el panel (clic en flecha)
+          arrowBtn.addEventListener('click', () => {
+            isRegistradosMinimized = false;
+            updateToggleState();
+          });
+
+          // Evento para ocultar el panel (clic en ocultar)
+          toggleBtn.addEventListener('click', () => {
+            isRegistradosMinimized = true;
+            updateToggleState();
+          });
+
+          let isPaused = false;
+          const pauseBtn = document.getElementById('registrados-monitor-pause');
+          pauseBtn.addEventListener('click', () => {
+            isPaused = !isPaused;
+            pauseBtn.textContent = isPaused ? '▶ Reanudar' : '⏸ Pausar';
+            pauseBtn.style.background = isPaused ? 'rgba(255,200,0,0.4)' : 'rgba(255,255,255,0.2)';
+            window.monitorPaused = isPaused;
+            addLog(isPaused ? '⏸ Monitor pausado' : '▶ Monitor reanudado', 'warning');
+          });
+
+          document.getElementById('registrados-monitor-scan-now').addEventListener('click', () => {
+            if (!isProcessing) {
+              addLog('🔄 Escaneo manual iniciado...', 'info');
+              processTargets();
+            } else {
+              addLog('⚠ Ya hay un escaneo en proceso', 'warning');
+            }
+          });
+
+          return panel;
+        }
+        // ==========================================
+
+        function updateStatus(text, type = 'normal'){
+          const el = document.getElementById('registrados-monitor-status');
+          if (el) {
+            const icons = {
+              active: '🟢',
+              processing: '🔄',
+              paused: '⏸',
+              error: '🔴'
+            };
+            el.textContent = `${icons[type] || '🟢'} ${text}`;
+          }
+        }
+
+        function updateScans(count){
+          const el = document.getElementById('registrados-monitor-scans');
+          if (el) el.textContent = count;
+        }
+
+        function updateStats(){
+          const success = document.getElementById('registrados-monitor-success');
+          const failed = document.getElementById('registrados-monitor-failed');
+          if (success) success.textContent = totalProcessed;
+          if (failed) failed.textContent = totalFailed;
+        }
+
+        function addLog(message, type = 'normal'){
+          const logEl = document.getElementById('registrados-monitor-log');
+          if (!logEl) return;
+
+          const time = new Date().toLocaleTimeString();
+          const colors = {
+            success: '#4ade80',
+            error: '#f87171',
+            warning: '#fbbf24',
+            info: '#60a5fa',
+            normal: '#e5e7eb'
+          };
+
+          const entry = document.createElement('div');
+          entry.style.color = colors[type] || colors.normal;
+          entry.style.marginBottom = '2px';
+          entry.textContent = `[${time}] ${message}`;
+
+          logEl.appendChild(entry);
+          logEl.scrollTop = logEl.scrollHeight;
+
+          while (logEl.children.length > 50) {
+            logEl.removeChild(logEl.firstChild);
+          }
+        }
+
+        function startCountdown(){
+          let remaining = CONFIG.autoScanIntervalMs / 1000;
+          const countdownEl = document.getElementById('registrados-monitor-countdown');
+
+          setInterval(() => {
+            if (window.monitorPaused) {
+              if (countdownEl) countdownEl.textContent = 'Pausado';
+              return;
+            }
+
+            remaining--;
+            if (remaining <= 0) remaining = CONFIG.autoScanIntervalMs / 1000;
+
+            const mins = Math.floor(remaining / 60);
+            const secs = remaining % 60;
+            if (countdownEl) countdownEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+          }, 1000);
+        }
+
+        function findTargets(){
+          const rows = Array.from(document.querySelectorAll('table.k-selectable tr, table tr, tr'));
+          const targets = [];
+          rows.forEach(row => {
+            const text = (row.textContent||'').trim();
+            if (!/Registrado/i.test(text)) return;
+            const caseLink = row.querySelector('a.expiration__link') || row.querySelector('a[href*="Cases.aspx"], a[href*="Case"]');
+            let id = null;
+            if (caseLink) {
+              const ng = caseLink.getAttribute && caseLink.getAttribute('ng-click');
+              const m = ng && ng.match(/openCase\(\s*(\d+)\s*\)/);
+              if (m) id = Number(m[1]);
+              if (!id) {
+                const mm = (caseLink.textContent||'').match(/\b(\d{4,})\b/);
+                if (mm) id = Number(mm[1]);
+              }
+            }
+            if (!id) {
+              const btn = row.querySelector('button[id^="button-follow-list-"], button[data-case-id], [data-case-id]');
+              if (btn) {
+                const bid = btn.id ? btn.id.replace('button-follow-list-','') : (btn.getAttribute('data-case-id') || '');
+                if (/^\d+$/.test(bid)) id = Number(bid);
+              }
+            }
+            if (!id) {
+              const mm = text.match(/\b(\d{4,})\b/);
+              if (mm) id = Number(mm[1]);
+            }
+            targets.push({ row, caseLink: caseLink || null, id: id || null, rowText: text });
+          });
+          return targets.filter(t => t.id || t.caseLink);
+        }
+
+        async function waitForTargets(timeoutMs, intervalMs){
+          const start = Date.now();
+          while (Date.now() - start < timeoutMs) {
+            const targets = findTargets();
+            if (targets.length) return targets;
+            await sleep(intervalMs);
+          }
+          return [];
+        }
+
+        async function processTargets(){
+          if (isProcessing) {
+            addLog('Ya hay un proceso activo', 'warning');
+            return;
+          }
+          if (window.monitorPaused) {
+            addLog('Monitor pausado - Saltando escaneo', 'warning');
+            return;
+          }
+
+          isProcessing = true;
+          scanCount++;
+          updateScans(scanCount);
+          updateStatus('Escaneando...', 'processing');
+
+          let localSuccess = 0;
+          let localFailed = 0;
+
+          try {
+            addLog(`┏━━ Escaneo #${scanCount} iniciado ━━┓`, 'info');
+
+            const targets = await waitForTargets(CONFIG.waitTimeoutMs, CONFIG.pollIntervalMs);
+
+            if (!targets.length) {
+              addLog('✔ No hay registros "Registrado"', 'success');
+              updateStatus('Activo', 'active');
+              return;
+            }
+
+            addLog(`Encontrados ${targets.length} casos "Registrado"`, 'info');
+            const toProcess = Math.min(CONFIG.maxToOpen, targets.length);
+
+            if (targets.length > CONFIG.maxToOpen) {
+              addLog(`⚠ Limitando a ${CONFIG.maxToOpen} casos`, 'warning');
+            }
+
+            for (let i = 0; i < toProcess; i++){
+              const t = targets[i];
+              let handled = false;
+
+              if (CONFIG.mode === 'invoke' && window.angular && window.angular.element) {
+                try {
+                  const elForScope = t.caseLink || t.row;
+                  const aEl = window.angular.element(elForScope);
+
+                  const sc = (aEl && aEl.scope && aEl.scope()) || null;
+                  if (sc && typeof sc.openCase === 'function') {
+                    sc.$apply ? sc.$apply(() => sc.openCase(t.id)) : sc.openCase(t.id);
+                    handled = true;
+                  } else {
+                    const iso = (aEl && aEl.isolateScope && aEl.isolateScope()) || null;
+                    if (iso && typeof iso.openCase === 'function') {
+                      iso.$apply ? iso.$apply(() => iso.openCase(t.id)) : iso.openCase(t.id);
+                      handled = true;
+                    } else {
+                      const ctrl = (aEl && aEl.controller && aEl.controller()) || null;
+                      if (ctrl && typeof ctrl.openCase === 'function') {
+                        ctrl.openCase(t.id);
+                        handled = true;
+                      }
+                    }
+                  }
+
+                  if (!handled) {
+                    const injector = window.angular.element(document.body).injector && window.angular.element(document.body).injector();
+                    if (injector) {
+                      const $rootScope = injector.get && injector.get('$rootScope');
+                      if ($rootScope && typeof $rootScope.openCase === 'function') {
+                        $rootScope.$apply ? $rootScope.$apply(()=> $rootScope.openCase(t.id)) : $rootScope.openCase(t.id);
+                        handled = true;
+                      }
+                    }
+                  }
+                } catch(err){
+                  log('Error invoke:', err);
+                }
+              }
+
+              if (!handled && t.caseLink) {
+                try {
+                  if (window.jQuery && window.jQuery.fn && window.jQuery.fn.triggerHandler) {
+                    window.jQuery(t.caseLink).triggerHandler('click');
+                    handled = true;
+                  }
+                  if (!handled) {
+                    dispatchMouseSequence(t.caseLink);
+                    handled = true;
+                  }
+                } catch(e){}
+              }
+
+              if (!handled) {
+                const anyA = t.row.querySelector('a');
+                if (anyA) {
+                  dispatchMouseSequence(anyA);
+                  handled = true;
+                }
+              }
+
+              if (handled) {
+                localSuccess++;
+                totalProcessed++;
+                addLog(`✔ Caso ${t.id || 'N/A'} procesado (${i+1}/${toProcess})`, 'success');
+              } else {
+                localFailed++;
+                totalFailed++;
+                addLog(`✗ Caso ${t.id || 'N/A'} falló`, 'error');
+              }
+
+              updateStats();
+              await sleep(CONFIG.delayMs);
+            }
+
+            if (localFailed > 0) {
+              addLog(`⚠ ATENCIÓN: ${localFailed} casos no se abrieron`, 'warning');
+            } else {
+              addLog(`✔ Todos los casos procesados exitosamente`, 'success');
+            }
+
+            addLog(`┗━━ Escaneo #${scanCount} completado ━━┛`, 'info');
+            updateStatus('Activo', 'active');
+
+          } catch(e){
+            addLog(`ERROR: ${e.message}`, 'error');
+            updateStatus('Error', 'error');
+            console.error('[abrir-todos] Error:', e);
+          } finally {
+            isProcessing = false;
+          }
+        }
+
+        (async function init(){
+          createMonitorUI();
+          addLog('Monitor iniciado', 'success');
+          startCountdown();
+
+          await sleep(1000);
+          await processTargets();
+
+          setInterval(() => {
+            if (!window.monitorPaused) {
+              processTargets();
+            }
+          }, CONFIG.autoScanIntervalMs);
+
+          log('Sistema de monitoreo activo');
+        })();
+
+      } catch(e){
+        console.error('[abrir-todos][injected] error:', e);
+      }
+    })();
+  };
+
+  try {
+    const s = document.createElement('script');
+    s.setAttribute('type','text/javascript');
+    s.textContent = '(' + injectedCode.toString() + ')();';
+    (document.head || document.documentElement).appendChild(s);
+    s.parentNode && s.parentNode.removeChild(s);
+    console.log('[abrir-todos] Script con monitor visual inyectado');
+  } catch(e){
+    console.error('[abrir-todos] Error al inyectar:', e);
+  }
+})();
