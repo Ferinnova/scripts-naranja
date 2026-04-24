@@ -1,0 +1,93 @@
+// @name         Aranda Keep-Alive v2 (Fuerte) + Firma Centrada
+// @namespace    https://aranda.positiva.gov.co/
+// @version      2.2
+// @description  Evita cierre de sesión simulando actividad y agrega firma celeste centrada.
+// @match        https://aranda.positiva.gov.co/ASDKV8/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // ==========================================
+    // 1. LÓGICA DE MANTENER SESIÓN ACTIVA
+    // ==========================================
+    const INTERVALO = 3 * 60 * 1000; // 3 minutos
+
+    console.log("[Keep-Alive v2] Iniciado - Modo Activo con Firma Flotante");
+
+    function mantenerSesion() {
+        const urlPing = window.location.protocol + "//" + window.location.host + window.location.pathname + "?keepalive=" + new Date().getTime();
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", urlPing, true);
+
+        // Importante: Decirle al servidor que es una petición AJAX
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log(`[Keep-Alive] ✅ Conexión exitosa a las ${new Date().toLocaleTimeString()}`);
+                    if (indicador) {
+                        indicador.style.background = "#00ff00"; // Verde flash
+                        setTimeout(() => indicador.style.background = "green", 500);
+                    }
+                } else {
+                    console.warn("[Keep-Alive] ⚠️ El servidor respondió raro: " + xhr.status);
+                    if (indicador) indicador.style.background = "orange";
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    // Indicador visual (Puntito verde abajo a la izquierda)
+    const indicador = document.createElement('div');
+    indicador.style.cssText = "position:fixed;bottom:2px;left:2px;width:8px;height:8px;background:green;border-radius:50%;z-index:99999;pointer-events:none;";
+    document.body.appendChild(indicador);
+
+    // Ejecutar cada 3 minutos
+    setInterval(mantenerSesion, INTERVALO);
+    // Ejecutar una vez al inicio
+    setTimeout(mantenerSesion, 5000);
+
+
+    // ==========================================
+    // 2. LÓGICA PARA INYECTAR LA FIRMA
+    // ==========================================
+    function inyectarFirmaFlotante() {
+        // Verificamos si ya existe para no duplicarla
+        if (!document.getElementById('firma-william-flotante')) {
+            var firma = document.createElement('div');
+            firma.id = 'firma-william-flotante';
+
+            // Estilos: Posición fija abajo al centro, color celeste brillante y bloqueo de clics
+            firma.style.cssText = `
+                position: fixed;
+                bottom: 10px;          /* Distancia desde abajo (ajusta si queda muy alta/baja) */
+                left: 50%;             /* Mitad de la pantalla horizontal */
+                transform: translateX(-50%); /* Centrado perfecto */
+                color: #f5846f;        /* Color / Cyan */
+                font-size: 14px;
+                font-weight: bold;
+                font-style: italic;
+                letter-spacing: 1px;
+                z-index: 999999;       /* Estar por encima de todo */
+                pointer-events: none;  /* Evitar que estorbe si haces clic sobre ella */
+                text-shadow: 0px 0px 5px rgba(0, 229, 255, 0.4); /* Resplandor sutil */
+                user-select: none;
+            `;
+
+            firma.innerHTML = ' Patrocinado por: Ferchomor';
+
+            // Lo pegamos directamente al body para que nada lo borre
+            document.body.appendChild(firma);
+        }
+    }
+
+    // Lo ejecutamos rápidamente un par de veces y luego lo dejamos constante
+    setTimeout(inyectarFirmaFlotante, 1000);
+    setInterval(inyectarFirmaFlotante, 3000);
+
+})();
